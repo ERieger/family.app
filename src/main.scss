@@ -1,6 +1,7 @@
 // sass --watch src/main.scss public/index.css
+// sass src/main.scss public/index.css
 
-@import 'abstracts/variables', 'abstracts/mixins', 'abstracts/fonts';
+@import 'abstracts/variables', 'abstracts/fonts', 'abstracts/mixins';
 @import 'components/header', 'components/footer';
 
 @import 'global/global';
