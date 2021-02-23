@@ -6,7 +6,7 @@ This application is currently in development. A hosted version will be available
 
 ## Testing
 
-This portfolio has been tested in [Firefox](https://www.mozilla.org/en-US/firefox/new/) and [Chrome](https://www.google.com/intl/en_au/chrome/).
+This application has been tested in [Firefox](https://www.mozilla.org/en-US/firefox/new/) and [Chrome](https://www.google.com/intl/en_au/chrome/).
 
 ## Support
 If you find any bugs or issues in this program, please open an [issue](https://github.com/ERieger/family.app/issues/new) on the github repo.
