@@ -1,21 +1,16 @@
 document.addEventListener('DOMContentLoaded', event => {
     const app = firebase.app();
     const db = firebase.firestore();
-    const myPost = db.collection('posts').doc('firstpost');
-
-    myPost.onSnapshot(doc => {
-        const data = doc.data();
-        document.write(data.title + '<br>');
-        document.write(data.createdAt);
-    });
 });
 
-function googlelogin() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    firebase.auth().signInWithPopup(provider).then(result => {
-            const user = result.user;
-            document.write(`Hello ${user.displayName}`);
-            console.log(user);
-        }).catch(console.log);
-}
+firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+        // Signed in 
+        var user = userCredential.user;
+        // ...
+    })
+    .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ..
+    });
