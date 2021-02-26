@@ -1,17 +1,3 @@
-(function () {
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyBbTVuvvvt3HJ8Cf5aqVYKPFAGOTsvJsec",
-    authDomain: "family-app-3a825.firebaseapp.com",
-    projectId: "family-app-3a825",
-    storageBucket: "family-app-3a825.appspot.com",
-    messagingSenderId: "889947396324",
-    appId: "1:889947396324:web:ce3adc8ba5925582c534f1"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-});
-
 const txtEmail = document.querySelector('#txtEmail');
 const txtPassword = document.querySelector('#txtPassword');
 const btnSignIn = document.querySelector('#btnSignIn');
@@ -27,10 +13,6 @@ btnSignIn.addEventListener('click', e => {
     promise.catch(e => console.log(e.message));
 });
 
-btnSignOut.addEventListener('click', e => {
-    firebase.auth().signOut();
-});
-
 btnSignUp.addEventListener('click', e => {
     // TODO: Check for real email.
     const email = txtEmail.value;
@@ -41,12 +23,16 @@ btnSignUp.addEventListener('click', e => {
     promise.catch(e => console.log(e.message));
 });
 
+btnSignOut.addEventListener('click', e => {
+    firebase.auth().signOut();
+});
+
 firebase.auth().onAuthStateChanged(firebaseUser => {
-    if(firebaseUser) {
+    if (firebaseUser) {
         console.log(firebaseUser);
-        btnSignOut.classList.remove('hide');
+        btnSignOut.classList.remove('hidden');
     } else {
         console.log('not logged in.');
-        btnSignOut.classList.add('hide');
+        btnSignOut.classList.add('hidden');
     }
 });
