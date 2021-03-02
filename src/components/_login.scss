@@ -16,11 +16,12 @@
     }
 
     &__buttons {
+        background-color: $background-accent-grad;
         grid-area: buttons;
         @include vertical-flex;
 
         & .--login-button {
-            @include login-text;
+            @include login-button;
         }
     }
 }

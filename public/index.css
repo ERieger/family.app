@@ -24,6 +24,7 @@
   margin-top: 3rem;
 }
 .login__buttons {
+  background-color: linear-gradient(149deg, #94066a 0%, #c78e08 74%, #c13333 100%);
   grid-area: buttons;
   display: flex;
   flex-direction: column;
@@ -34,12 +35,19 @@
 }
 .login__buttons .--login-button {
   margin-top: 3rem;
+  padding: 1rem 5rem;
+  border-radius: 1rem;
+  border: 0.1rem solid #707070;
+  background-color: #ffffff;
+  color: #707070;
+  font-weight: bolder;
+  font-size: 2rem;
 }
 
 * {
   font-size: 10px;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .hidden {
