@@ -1,11 +1,16 @@
-@mixin flex-stack {
+@mixin vertical-flex {
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
+    align-items: center;
+    align-content: center;
+}
+
+@mixin login-text {
+    margin-top: 3rem;
+}
+
+@mixin login-button {
+    margin-top: 3rem;
 }

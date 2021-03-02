@@ -1,28 +1,26 @@
 .login {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+
     display: grid;
-    grid-template-rows: 100vh;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100vh;
     grid-template-areas: "text buttons";
 
     &__text {
-        grid-area: text;
-        @include flex-stack;
+        @include vertical-flex;
 
-        input {
-            height: 3rem;
+        & .--login-text {
+            @include login-text;
         }
     }
 
     &__buttons {
         grid-area: buttons;
-        @include flex-stack;
+        @include vertical-flex;
 
-        button {
-            height: 3rem;
+        & .--login-button {
+            @include login-text;
         }
     }
 }
