@@ -11,17 +11,31 @@
         @include vertical-flex;
 
         & .--login-text {
-            @include login-text;
+            margin-top: 3rem;
+            height: 4rem;
+            width: 50rem;
+            padding-left: 2rem;
+            border: 0.1rem solid $grey-primary;
+            border-radius: 0.2rem;
+            background-color: $grey-secondary;
         }
     }
 
     &__buttons {
-        background-color: $background-accent-grad;
         grid-area: buttons;
         @include vertical-flex;
 
+        background-image: linear-gradient(149deg, rgba(148, 6, 106, 1) 0%, rgba(193, 51, 51, 1) 100%);
+
         & .--login-button {
-            @include login-button;
+            margin-top: 3rem;
+            padding: 1rem 5rem;
+            border-radius: 1rem;
+            border: 0.1rem solid $grey-primary;
+            background-color: $background-secondary;
+            color: $grey-primary;
+            font-weight: bolder;
+            font-size: 2rem;
         }
     }
 }

@@ -22,9 +22,14 @@
 }
 .login__text .--login-text {
   margin-top: 3rem;
+  height: 4rem;
+  width: 50rem;
+  padding-left: 2rem;
+  border: 0.1rem solid #707070;
+  border-radius: 0.2rem;
+  background-color: #e6e6e6;
 }
 .login__buttons {
-  background-color: linear-gradient(149deg, #94066a 0%, #c78e08 74%, #c13333 100%);
   grid-area: buttons;
   display: flex;
   flex-direction: column;
@@ -32,6 +37,7 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+  background-image: linear-gradient(149deg, #94066a 0%, #c13333 100%);
 }
 .login__buttons .--login-button {
   margin-top: 3rem;

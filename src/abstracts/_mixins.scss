@@ -6,18 +6,3 @@
     align-items: center;
     align-content: center;
 }
-
-@mixin login-text {
-    margin-top: 3rem;
-}
-
-@mixin login-button {
-    margin-top: 3rem;
-    padding: 1rem 5rem;
-    border-radius: 1rem;
-    border: 0.1rem solid $grey-primary;
-    background-color: $background-secondary;
-    color: $grey-primary;
-    font-weight: bolder;
-    font-size: 2rem;
-}
