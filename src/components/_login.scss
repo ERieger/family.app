@@ -18,6 +18,19 @@
             border: 0.1rem solid $grey-primary;
             border-radius: 0.2rem;
             background-color: $grey-secondary;
+            font-size: 2rem;
+        }
+
+        & .--left {
+            background: $gradient-accent;
+            margin-top: 3rem;
+            padding: 1rem 5rem;
+            border-radius: 10rem;
+            border: 0.1rem solid $grey-primary;
+            background-color: $grey-secondary;
+            color: $text-light;
+            font-weight: bolder;
+            font-size: 2rem;
         }
     }
 
@@ -25,17 +38,19 @@
         grid-area: buttons;
         @include vertical-flex;
 
-        background-image: linear-gradient(149deg, rgba(148, 6, 106, 1) 0%, rgba(193, 51, 51, 1) 100%);
+        background-image: $gradient-accent;
 
-        & .--login-button {
+        & .--right {
+            background: none;
             margin-top: 3rem;
             padding: 1rem 5rem;
-            border-radius: 1rem;
-            border: 0.1rem solid $grey-primary;
-            background-color: $background-secondary;
-            color: $grey-primary;
+            border-radius: 10rem;
+            border: 0.1rem solid $text-light;
+            background-color: $gradient-accent;
+            color: $text-light;
             font-weight: bolder;
             font-size: 2rem;
         }
+
     }
 }

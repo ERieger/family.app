@@ -35,19 +35,20 @@
 
   </div>
 
-  <div class="login">
+  <div id="login-page" class="login">
     <div class="login__text">
       <input type="email" class="login__email --login-text" id="txtEmail" placeholder="Email">
       <input type="password" class="login__password --login-text" id="txtPassword" placeholder="Password">
       <input type="text" class="login__username --login-text" id="txtUsername" placeholder="Username">
+      <button class="login__text --left" id="btnSignIn">Sign In</button>
     </div>
 
     <div class="login__buttons">
-      <button class="login__signup --login-button" id="btnSignUp">Sign Up</button>
-      <button class="login__signin --login-button" id="btnSignIn">Sign In</button>
-      <button class="login__signout --login-button" id="btnSignOut" class="hidden">Log Out</button>
+      <button class="login__buttons --right" id="btnSignUp">Sign Up</button>
     </div>
   </div>
+
+  <button class="login__signout --login-button" id="btnSignOut" class="hidden">Log Out</button>
 
   <script src="app.js"></script>
 </body>
