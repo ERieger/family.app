@@ -2,32 +2,66 @@ const loginPage = document.querySelector('#login-page');
 const txtEmail = document.querySelector('#txtEmail');
 const txtPassword = document.querySelector('#txtPassword');
 const txtUsername = document.querySelector('#txtUsername');
-const btnSignIn = document.querySelector('#btnSignIn');
-const btnSignUp = document.querySelector('#btnSignUp');
+const left = document.querySelector('#left');
+const right = document.querySelector('#right');
 const btnSignOut = document.querySelector('#btnSignOut');
+
 const auth = firebase.auth();
 const db = firebase.firestore();
 
 const users = db.collection('users');
 
-// Sign existing user in
-btnSignIn.addEventListener('click', e => {
-    let email = txtEmail.value;
-    let password = txtPassword.value;
+let signIn = false;
 
-    const promise = auth.signInWithEmailAndPassword(email, password);
-    promise.catch(e => console.log(e.message));
-});
+function changeEventList() {
+    if (signIn == false) {
+        signIn = true;
+    } else {
+        signIn = false;
+    }
 
-// Sign up existing user
-btnSignUp.addEventListener('click', e => {
-    // TODO: Check for real email.
-    let email = txtEmail.value;
-    let password = txtPassword.value;
+    setEventList();
+}
 
-    const promise = auth.createUserWithEmailAndPassword(email, password);
-    promise.catch(e => console.log(e.message));
-});
+function setEventList() {
+    if (signIn == true) {
+        left.replaceWith(left.cloneNode(true));
+        right.innerHTML = 'Sign In';
+        left.innerHTML = 'Sign Up';
+
+        // Sign up existing user
+        left.addEventListener('click', function signUp() {
+            // TODO: Check for real email.
+            let email = txtEmail.value;
+            let password = txtPassword.value;
+
+            const promise = auth.createUserWithEmailAndPassword(email, password);
+            promise.catch(e => console.log(e.message));
+        });
+
+        txtUsername.classList.remove('hidden');
+        console.log(signIn, 'sign up');
+    } else if (signIn == false) {
+        left.replaceWith(left.cloneNode(true));
+        right.innerHTML = 'Sign Up';
+        left.innerHTML = 'Sign In';
+
+        // Sign existing user in
+        left.addEventListener('click', function signIn() {
+            let email = txtEmail.value;
+            let password = txtPassword.value;
+
+            const promise = auth.signInWithEmailAndPassword(email, password);
+            promise.catch(e => console.log(e.message));
+        });
+
+        txtUsername.classList.add('hidden');
+        console.log(signIn, 'sign in');
+
+    }
+}
+
+setEventList();
 
 // Sign out current user
 btnSignOut.addEventListener('click', e => {
@@ -69,10 +103,10 @@ function writeUserToDB() {
     let email = txtEmail.value;
 
     users.doc(uid).set({ // Write to db
-            username: username,
-            uid: uid,
-            email: email
-        })
+        username: username,
+        uid: uid,
+        email: email
+    })
         .then(() => { // If success
             console.log("Document successfully written!");
         })
