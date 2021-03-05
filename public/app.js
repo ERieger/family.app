@@ -12,6 +12,7 @@ const db = firebase.firestore();
 const users = db.collection('users');
 
 let signIn = false;
+let listener = false;
 
 function changeEventList() {
     if (signIn == false) {
@@ -23,41 +24,52 @@ function changeEventList() {
     setEventList();
 }
 
+let signUserUp = () => {
+    // TODO: Check for real email.
+    let email = txtEmail.value;
+    let password = txtPassword.value;
+
+    const promise = auth.createUserWithEmailAndPassword(email, password);
+    promise.catch(e => console.log(e.message));
+};
+
+let signUserIn = () => {
+    let email = txtEmail.value;
+    let password = txtPassword.value;
+
+    const promise = auth.signInWithEmailAndPassword(email, password);
+    promise.catch(e => console.log(e.message));
+};
+
 function setEventList() {
     if (signIn == true) {
-        left.replaceWith(left.cloneNode(true));
+        if (listener == true) {
+            left.removeEventListener('click', signUserIn);
+            listener = false;
+        }
         right.innerHTML = 'Sign In';
         left.innerHTML = 'Sign Up';
 
         // Sign up existing user
-        left.addEventListener('click', function signUp() {
-            // TODO: Check for real email.
-            let email = txtEmail.value;
-            let password = txtPassword.value;
-
-            const promise = auth.createUserWithEmailAndPassword(email, password);
-            promise.catch(e => console.log(e.message));
-        });
+        left.addEventListener('click', signUserUp);
 
         txtUsername.classList.remove('hidden');
         console.log(signIn, 'sign up');
+        listener = true;
     } else if (signIn == false) {
-        left.replaceWith(left.cloneNode(true));
+        if (listener == true) {
+            left.removeEventListener('click', signUserUp);
+            listener = false;
+        }
         right.innerHTML = 'Sign Up';
         left.innerHTML = 'Sign In';
 
         // Sign existing user in
-        left.addEventListener('click', function signIn() {
-            let email = txtEmail.value;
-            let password = txtPassword.value;
-
-            const promise = auth.signInWithEmailAndPassword(email, password);
-            promise.catch(e => console.log(e.message));
-        });
+        left.addEventListener('click', signUserIn);
 
         txtUsername.classList.add('hidden');
         console.log(signIn, 'sign in');
-
+        listener = true;
     }
 }
 
