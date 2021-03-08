@@ -62,8 +62,9 @@
   font-weight: bolder;
   font-size: 2rem;
 }
+
 @media (max-width: 480px) {
-  .login .login {
+  .login {
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -72,7 +73,6 @@
     grid-template-areas: "buttons" "text";
   }
 }
-
 * {
   font-size: 10px;
   margin: 0;

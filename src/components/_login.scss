@@ -52,18 +52,19 @@
             font-size: 2rem;
         }
     }
-    // For Phones
-    @media (max-width: 480px) {
-        .login {
-            width: 100vw;
-            height: 100vh;
+}
 
-            display: grid;
-            grid-template-columns: 100vw;
-            grid-template-rows: 1fr 1fr;
-            grid-template-areas:
-                "buttons"
-                "text";
-        }
+// For Phones
+@media (max-width: 480px) {
+    .login {
+        width: 100vw;
+        height: 100vh;
+
+        display: grid;
+        grid-template-columns: 100vw;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            "buttons"
+            "text";
     }
 }
