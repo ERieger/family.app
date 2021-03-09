@@ -2,6 +2,6 @@
 // sass src/main.scss public/index.css
 
 @import 'abstracts/variables', 'abstracts/fonts', 'abstracts/mixins';
-@import 'components/header', 'components/footer', 'components/login';
+@import 'components/header', 'components/app', 'components/login';
 
 @import 'global/global';

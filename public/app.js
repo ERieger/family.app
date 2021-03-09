@@ -5,6 +5,7 @@ const txtUsername = document.querySelector('#txtUsername');
 const left = document.querySelector('#left');
 const right = document.querySelector('#right');
 const btnSignOut = document.querySelector('#btnSignOut');
+const appPage = document.querySelector('#app-page');
 
 const auth = firebase.auth();
 const db = firebase.firestore();
@@ -97,6 +98,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
             }
 
             loginPage.classList.add('hidden');
+            appPage.classList.remove('hidden');
         }).catch((error) => { // Catch any errors
             console.log("Error getting document:", error);
         });
@@ -104,6 +106,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     } else { // Confirm logout
         console.log('not logged in.');
         btnSignOut.classList.add('hidden');
+        appPage.classList.add('hidden');
         loginPage.classList.remove('hidden');
     }
 });

@@ -4,6 +4,14 @@
   margin: 0;
 }
 
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: min-content 100%;
+  grid-template-rows: min-content 100%;
+}
+
 .login {
   width: 100vw;
   height: 100vh;

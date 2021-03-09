@@ -3,16 +3,14 @@
 
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1" name="viewport" />  <title>Login</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Login</title>
 
   <link rel="stylesheet" href="index.css">
 
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
 
   <script>
     // Your web app's Firebase configuration
@@ -47,8 +45,12 @@
     </div>
   </div>
 
-  <button class="login__signout --login-button" id="btnSignOut" class="hidden">Log Out</button>
+  <div id="app-page" class="app hidden">
+    <button class="login__signout --login-button" id="btnSignOut" class="hidden">Log Out</button>
+    <div id="header" class="app__header">
 
+    </div>
+  </div>
   <script src="app.js"></script>
 </body>
 
