@@ -52,6 +52,12 @@
             font-size: 2rem;
         }
     }
+
+    &__signout {
+        padding: 1rem;
+        background: url(./images/logout.svg);
+        background-repeat: no-repeat;
+    }
 }
 
 // For Phones
