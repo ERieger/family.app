@@ -78,9 +78,9 @@
   font-size: 2rem;
 }
 .login__signout {
-  padding: 1rem;
   background: url(./images/logout.svg);
   background-repeat: no-repeat;
+  padding: 1rem;
 }
 
 @media (max-width: 480px) {
