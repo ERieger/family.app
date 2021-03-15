@@ -33,7 +33,9 @@
         &__signout {
             background-image: url(./images/logout.svg);
             background-repeat: no-repeat;
-            background-size: contain;
+            background-position: center top;
+            background-attachment: fixed;
+            background-size: cover;
         }
 
         &__signout {

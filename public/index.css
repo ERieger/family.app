@@ -104,7 +104,9 @@
 .app .left-nav__signout {
   background-image: url(./images/logout.svg);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-position: center top;
+  background-attachment: fixed;
+  background-size: cover;
 }
 .app .left-nav__signout:hover {
   background-color: #e6e6e6;
