@@ -1,17 +1,70 @@
 .app {
+    background-color: $grey-secondary;
     padding: 0;
     margin: 0;
     width: 100vw;
     height: 100vh;
-    
+
     display: grid;
     grid-template-columns: min-content 100%;
     grid-template-rows: min-content 100%;
-    grid-template-areas: 
-    'left-nav .'
-    'left-nav .';
-}
+    grid-template-areas:
+        'left-nav .'
+        'left-nav .';
 
-.left-nav {
-    grid-area: left-nav;
+    .left-nav {
+        grid-area: left-nav;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+        background-color: $background-secondary;
+        box-shadow: 4px 1px 8px 1px rgba(0, 0, 0, 0.33);
+
+        & .--nav-item {
+            width: 3rem;
+            margin: 1rem;
+            padding: .5rem;
+            border-radius: .5rem;
+        }
+
+        &__signout {
+            background-image: url(./images/logout.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        &__signout {
+            &:hover {
+                background-color: lighten($ui-dark, 90%);
+            }
+        }
+
+        &__todo {
+            &:hover {
+                background-color: lighten($ui-todo, 25%);
+            }
+        }
+
+        &__shopping-list {
+            &:hover {
+                background-color: lighten($ui-shopping-list, 25%);
+            }
+        }
+
+        &__meal-planner {
+            &:hover {
+                background-color: lighten($ui-meal-planner, 25%);
+            }
+        }
+
+        &__settings {
+            &:hover {
+                background-color: lighten($ui-dark, 90%);
+            }
+        }
+
+    }
 }

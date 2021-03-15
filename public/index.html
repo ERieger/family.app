@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <title>Login</title>
 
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="./index.css">
 
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
@@ -51,7 +51,13 @@
     </div>
 
     <div class="left-nav">
-      <img src="./images/logout.svg" alt="Log Out" class="login__signout --login-button hidden" id="btnSignOut">
+      <img src="./images/logout.svg" alt="Log Out" class="left-nav__signout --nav-item hidden" id="btnSignOut">
+      <img src="./images/tick.svg" alt="Todo" class="left-nav__todo --nav-item" id="btnTodo">
+      <img src="./images/shopping.svg" alt="Shopping List" class="left-nav__shopping-list --nav-item" id="btnShoppingList">
+      <img src="./images/meal.svg" alt="Meal Planner" class="left-nav__meal-planner --nav-item" id="btnMealPlanner">
+
+     
+      <img src="./images/settings.svg" alt="Settings" class="left-nav__settings --nav-item" id="btnSettings">
     </div>
   </div>
   <script src="app.js"></script>

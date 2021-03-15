@@ -4,21 +4,6 @@
   margin: 0;
 }
 
-.app {
-  padding: 0;
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: min-content 100%;
-  grid-template-rows: min-content 100%;
-  grid-template-areas: "left-nav ." "left-nav .";
-}
-
-.left-nav {
-  grid-area: left-nav;
-}
-
 .login {
   width: 100vw;
   height: 100vh;
@@ -77,11 +62,6 @@
   font-weight: bolder;
   font-size: 2rem;
 }
-.login__signout {
-  background: url(./images/logout.svg);
-  background-repeat: no-repeat;
-  padding: 1rem;
-}
 
 @media (max-width: 480px) {
   .login {
@@ -93,6 +73,55 @@
     grid-template-areas: "buttons" "text";
   }
 }
+.app {
+  background-color: #e6e6e6;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: min-content 100%;
+  grid-template-rows: min-content 100%;
+  grid-template-areas: "left-nav ." "left-nav .";
+}
+.app .left-nav {
+  grid-area: left-nav;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  background-color: #ffffff;
+  box-shadow: 4px 1px 8px 1px rgba(0, 0, 0, 0.33);
+}
+.app .left-nav .--nav-item {
+  width: 3rem;
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+.app .left-nav__signout {
+  background-image: url(./images/logout.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.app .left-nav__signout:hover {
+  background-color: #e6e6e6;
+}
+.app .left-nav__todo:hover {
+  background-color: #e3eff7;
+}
+.app .left-nav__shopping-list:hover {
+  background-color: #f9e1bf;
+}
+.app .left-nav__meal-planner:hover {
+  background-color: #ffeeee;
+}
+.app .left-nav__settings:hover {
+  background-color: #e6e6e6;
+}
+
 * {
   font-size: 10px;
   margin: 0;
