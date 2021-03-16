@@ -80,7 +80,7 @@
   max-width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr min-content 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas: ". . ." ". form ." ". . .";
   background: linear-gradient(149deg, #94066a 0%, #c13333 100%);
   text-align: center;
@@ -114,29 +114,33 @@
 .fam-reg .select .cards .--card:hover {
   border-color: #7fb7dc;
 }
-.fam-reg .select .cards h3 {
-  font-size: 2rem;
-}
-.fam-reg .select .cards p {
-  font-size: 1.6rem;
-}
 .fam-reg .select .cards img {
   width: 75%;
 }
-.fam-reg .select h1 {
+.fam-reg .create {
+  height: 100%;
+  width: 100%;
+}
+.fam-reg h1 {
   font-size: 4rem;
   padding: 1rem;
 }
-.fam-reg .select h2 {
+.fam-reg h2 {
   font-size: 2.5rem;
   padding: 1rem;
+}
+.fam-reg h3 {
+  font-size: 2rem;
+}
+.fam-reg p {
+  font-size: 1.6rem;
 }
 
 @media (max-width: 768px) {
   .fam-reg {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows: 1fr min-content 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
     grid-template-areas: ". . ." ". form ." ". . .";
   }
 }
@@ -144,7 +148,7 @@
   .fam-reg {
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
-    grid-template-rows: 1fr min-content 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
     grid-template-areas: ". . ." ". form ." ". . .";
   }
   .fam-reg .cards {

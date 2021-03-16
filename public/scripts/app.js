@@ -1,14 +1,3 @@
-// HTML page references
-const loginPage = document.querySelector('#login-page');
-const txtEmail = document.querySelector('#txtEmail');
-const txtPassword = document.querySelector('#txtPassword');
-const txtUsername = document.querySelector('#txtUsername');
-const left = document.querySelector('#left');
-const right = document.querySelector('#right');
-const btnSignOut = document.querySelector('#btnSignOut');
-const appPage = document.querySelector('#app-page');
-const famReg = document.querySelector('#fam-reg');
-
 // Firebase references
 const auth = firebase.auth();
 const db = firebase.firestore();
@@ -32,16 +21,16 @@ function changeEventList() {
 }
 
 let signUserUp = () => {
-    let email = txtEmail.value;
-    let password = txtPassword.value;
+    let email = consts.txtEmail.value;
+    let password = consts.txtPassword.value;
 
     const promise = auth.createUserWithEmailAndPassword(email, password);
     promise.catch(e => console.log(e.message));
 };
 
 let signUserIn = () => {
-    let email = txtEmail.value;
-    let password = txtPassword.value;
+    let email = consts.txtEmail.value;
+    let password = consts.txtPassword.value;
 
     const promise = auth.signInWithEmailAndPassword(email, password);
     promise.catch(e => console.log(e.message));
@@ -50,29 +39,29 @@ let signUserIn = () => {
 function setEventList() {
     if (signIn == true) {
         if (listener == true) {
-            left.removeEventListener('click', signUserIn);
+            consts.left.removeEventListener('click', signUserIn);
             listener = false;
         }
-        right.innerHTML = 'Sign In';
-        left.innerHTML = 'Sign Up';
+        consts.right.innerHTML = 'Sign In';
+        consts.left.innerHTML = 'Sign Up';
 
         // Sign up existing user
-        left.addEventListener('click', signUserUp);
+        consts.left.addEventListener('click', signUserUp);
 
-        txtUsername.classList.remove('hidden');
+        consts.txtUsername.classList.remove('hidden');
         listener = true;
     } else if (signIn == false) {
         if (listener == true) {
-            left.removeEventListener('click', signUserUp);
+            consts.left.removeEventListener('click', signUserUp);
             listener = false;
         }
-        right.innerHTML = 'Sign Up';
-        left.innerHTML = 'Sign In';
+        consts.right.innerHTML = 'Sign Up';
+        consts.left.innerHTML = 'Sign In';
 
         // Sign existing user in
-        left.addEventListener('click', signUserIn);
+        consts.left.addEventListener('click', signUserIn);
 
-        txtUsername.classList.add('hidden');
+        consts.txtUsername.classList.add('hidden');
         listener = true;
     }
 }
@@ -80,7 +69,7 @@ function setEventList() {
 setEventList();
 
 // Sign out current user
-btnSignOut.addEventListener('click', e => {
+consts.btnSignOut.addEventListener('click', e => {
     firebase.auth().signOut();
 });
 
@@ -99,7 +88,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 writeUserToDB();
             }
 
-            loginPage.classList.add('hidden');
+            consts.loginPage.classList.add('hidden');
 
         }).catch((error) => { // Catch any errors
             console.log("Error getting document:", error);
@@ -107,16 +96,16 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
     } else {
         console.log('not logged in.');
-        appPage.classList.add('hidden');
-        loginPage.classList.remove('hidden');
+        consts.appPage.classList.add('hidden');
+        consts.loginPage.classList.remove('hidden');
     }
 });
 
 // Add new user information to database
 function writeUserToDB() {
-    let username = txtUsername.value;
+    let username = consts.txtUsername.value;
     let uid = auth.currentUser.uid;
-    let email = txtEmail.value;
+    let email = consts.txtEmail.value;
 
     users.doc(uid).set({ // Write to db
             username: username,
@@ -137,9 +126,12 @@ function writeUserToDB() {
 
 function loadFamily() {
     if (!familyUID) {
-        famReg.classList.remove('hidden');
+        consts.famReg.classList.remove('hidden');
+        consts.famCreate.addEventListener('click', createFamily);
+        consts.famJoin.addEventListener('click', joinFamily);
     } else {
-        appPage.classList.remove('hidden');
+        consts.appPage.classList.remove('hidden');
+        displayData();
     }
 }
 
@@ -156,6 +148,18 @@ function createUUID() {
     return uuid;
 }
 
-// function createFamily() {
-//     families.doc(createUUID())
-// }
+function createFamily() {
+    console.log('create');
+
+    consts.famSelectForm.classList.add('hidden');
+    consts.famCreateForm.classList.remove('hidden');
+    // families.doc(createUUID())
+}
+
+function joinFamily() {
+    console.log('join');
+}
+
+function displayData() {
+    console.log('display data');
+}
