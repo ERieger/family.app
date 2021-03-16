@@ -7,6 +7,7 @@ const left = document.querySelector('#left');
 const right = document.querySelector('#right');
 const btnSignOut = document.querySelector('#btnSignOut');
 const appPage = document.querySelector('#app-page');
+const famReg = document.querySelector('#fam-reg');
 
 // Firebase references
 const auth = firebase.auth();
@@ -15,9 +16,10 @@ const db = firebase.firestore();
 const users = db.collection('users');
 const families = db.collection('families');
 
-// Sign in bools
+// Global variables
 let signIn = false;
 let listener = false;
+let familyUID;
 
 function changeEventList() {
     if (signIn == false) {
@@ -87,26 +89,24 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     // If signed in
     if (firebaseUser) {
         console.log(firebaseUser);
-        btnSignOut.classList.remove('hidden'); // Show logout button
-
         // Check user exists in db
         users.doc(auth.currentUser.uid).get().then((doc) => {
             if (doc.exists) { // User exists
-                console.log("Document data:", doc.data());
+                familyUID = doc.data().family;
+                loadFamily();
             } else { // Add user data to db
-                console.log("No such document!");
+                console.log("No such user!");
                 writeUserToDB();
             }
 
             loginPage.classList.add('hidden');
-            appPage.classList.remove('hidden');
+
         }).catch((error) => { // Catch any errors
             console.log("Error getting document:", error);
         });
 
-    } else { // Confirm logout
+    } else {
         console.log('not logged in.');
-        btnSignOut.classList.add('hidden');
         appPage.classList.add('hidden');
         loginPage.classList.remove('hidden');
     }
@@ -121,7 +121,8 @@ function writeUserToDB() {
     users.doc(uid).set({ // Write to db
             username: username,
             uid: uid,
-            email: email
+            email: email,
+            family: false
         })
         .then(() => { // If success
             console.log("Document successfully written!");
@@ -129,7 +130,18 @@ function writeUserToDB() {
         .catch((error) => { // Catch errors
             console.error("Error writing document: ", error);
         });
+
+    familyUID = false;
+    loadFamily();
 };
+
+function loadFamily() {
+    if (!familyUID) {
+        famReg.classList.remove('hidden');
+    } else {
+        appPage.classList.remove('hidden');
+    }
+}
 
 
 // Generate a generic UUID
