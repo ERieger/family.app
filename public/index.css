@@ -7,6 +7,7 @@
 .login {
   width: 100vw;
   height: 100vh;
+  max-width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 100vh;
@@ -73,12 +74,118 @@
     grid-template-areas: "buttons" "text";
   }
 }
-.app {
-  background-color: #e6e6e6;
-  padding: 0;
-  margin: 0;
+.fam-reg {
   width: 100vw;
   height: 100vh;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr min-content 1fr;
+  grid-template-areas: ". . ." ". form ." ". . .";
+  background: linear-gradient(149deg, #94066a 0%, #c13333 100%);
+  text-align: center;
+}
+.fam-reg__form {
+  grid-area: form;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.4);
+}
+.fam-reg .select {
+  height: 100%;
+  width: 100%;
+}
+.fam-reg .select .cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+}
+.fam-reg .select .cards .--card {
+  margin: 1rem;
+  flex: 1;
+  border: solid #707070 0.2rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  min-width: 7rem;
+  transition: 0.5s;
+}
+.fam-reg .select .cards .--card:hover {
+  border-color: #7fb7dc;
+}
+.fam-reg .select .cards h3 {
+  font-size: 2rem;
+}
+.fam-reg .select .cards p {
+  font-size: 1.6rem;
+}
+.fam-reg .select .cards img {
+  width: 75%;
+}
+.fam-reg .select h1 {
+  font-size: 4rem;
+  padding: 1rem;
+}
+.fam-reg .select h2 {
+  font-size: 2.5rem;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .fam-reg {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr min-content 1fr;
+    grid-template-areas: ". . ." ". form ." ". . .";
+  }
+}
+@media (max-width: 813px) {
+  .fam-reg {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-rows: 1fr min-content 1fr;
+    grid-template-areas: ". . ." ". form ." ". . .";
+  }
+  .fam-reg .cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+  }
+  .fam-reg .cards .--card img {
+    width: 40%;
+  }
+}
+@media (max-width: 812px) {
+  .fam-reg {
+    display: grid;
+    grid-template-columns: 1fr 7fr 1fr;
+    grid-template-rows: 1fr min-content 1fr;
+    grid-template-areas: ". . ." ". form ." ". . .";
+  }
+}
+@media (max-width: 395px) {
+  .fam-reg {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-rows: 1fr min-content 1fr;
+    grid-template-areas: ". . ." ". form ." ". . .";
+  }
+  .fam-reg .cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    flex-direction: column;
+  }
+  .fam-reg .cards .--card img {
+    width: 40%;
+  }
+}
+.app {
+  background-color: #e6e6e6;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
   display: grid;
   grid-template-columns: min-content 100%;
   grid-template-rows: min-content 100%;
@@ -96,7 +203,8 @@
   box-shadow: 4px 1px 8px 1px rgba(0, 0, 0, 0.33);
 }
 .app .left-nav .--nav-item {
-  width: 3rem;
+  transition: 0.5s;
+  width: 4rem;
   margin: 1rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -128,6 +236,7 @@
   font-size: 10px;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .hidden {

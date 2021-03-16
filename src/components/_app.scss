@@ -1,9 +1,8 @@
 .app {
     background-color: $grey-secondary;
-    padding: 0;
-    margin: 0;
     width: 100vw;
     height: 100vh;
+    max-width:100%;
 
     display: grid;
     grid-template-columns: min-content 100%;
@@ -23,8 +22,9 @@
         background-color: $background-secondary;
         box-shadow: 4px 1px 8px 1px rgba(0, 0, 0, 0.33);
 
-        & .--nav-item {
-            width: 3rem;
+        .--nav-item {
+            transition: 0.5s;
+            width: 4rem;
             margin: 1rem;
             padding: .5rem;
             border-radius: .5rem;

@@ -58,7 +58,6 @@ function setEventList() {
         left.addEventListener('click', signUserUp);
 
         txtUsername.classList.remove('hidden');
-        console.log(signIn, 'sign up');
         listener = true;
     } else if (signIn == false) {
         if (listener == true) {
@@ -72,7 +71,6 @@ function setEventList() {
         left.addEventListener('click', signUserIn);
 
         txtUsername.classList.add('hidden');
-        console.log(signIn, 'sign in');
         listener = true;
     }
 }
@@ -121,10 +119,10 @@ function writeUserToDB() {
     let email = txtEmail.value;
 
     users.doc(uid).set({ // Write to db
-        username: username,
-        uid: uid,
-        email: email
-    })
+            username: username,
+            uid: uid,
+            email: email
+        })
         .then(() => { // If success
             console.log("Document successfully written!");
         })
@@ -135,26 +133,17 @@ function writeUserToDB() {
 
 
 // Generate a generic UUID
-function create_UUID(){
-    var dt = new Date().getTime();
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = (dt + Math.random()*16)%16 | 0;
-        dt = Math.floor(dt/16);
-        return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+function createUUID() {
+    let dt = new Date().getTime();
+    let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        let r = (dt + Math.random() * 16) % 16 | 0;
+        dt = Math.floor(dt / 16);
+        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
 
-    console.log(uuid);
-
-    families.get().then((doc) => {
-        if (doc.exists) {
-            create_UUID();
-        } else {
-            // doc.data() will be undefined in this case
-            return uuid;
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
+    return uuid;
 }
 
-console.log(create_UUID());
+// function createFamily() {
+//     families.doc(createUUID())
+// }
