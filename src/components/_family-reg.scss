@@ -7,9 +7,9 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas:
-        '. . .'
-        '. form .'
-        '. . .';
+        ". . ."
+        ". form ."
+        ". . .";
 
     background: $gradient-accent;
     text-align: center;
@@ -55,6 +55,11 @@
     .create {
         height: 100%;
         width: 100%;
+
+        .--text-input {
+            @include text-input;
+            margin: 3rem;
+        }
     }
 
     h1 {
@@ -83,9 +88,9 @@
         grid-template-columns: 1fr 4fr 1fr;
         grid-template-rows: 1fr 4fr 1fr;
         grid-template-areas:
-            '. . .'
-            '. form .'
-            '. . .';
+            ". . ."
+            ". form ."
+            ". . .";
     }
 }
 
@@ -95,9 +100,9 @@
         grid-template-columns: 1fr 6fr 1fr;
         grid-template-rows: 1fr 4fr 1fr;
         grid-template-areas:
-            '. . .'
-            '. form .'
-            '. . .';
+            ". . ."
+            ". form ."
+            ". . .";
 
         .cards {
             display: flex;
@@ -119,9 +124,9 @@
         grid-template-columns: 1fr 7fr 1fr;
         grid-template-rows: 1fr min-content 1fr;
         grid-template-areas:
-            '. . .'
-            '. form .'
-            '. . .';
+            ". . ."
+            ". form ."
+            ". . .";
     }
 }
 
@@ -131,9 +136,9 @@
         grid-template-columns: 1fr 6fr 1fr;
         grid-template-rows: 1fr min-content 1fr;
         grid-template-areas:
-            '. . .'
-            '. form .'
-            '. . .';
+            ". . ."
+            ". form ."
+            ". . .";
 
         .cards {
             display: flex;

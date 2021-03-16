@@ -1,7 +1,7 @@
 .login {
     width: 100vw;
     height: 100vh;
-    max-width:100%;
+    max-width: 100%;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -12,14 +12,8 @@
         @include vertical-flex;
 
         & .--login-text {
+            @include text-input;
             margin-top: 3rem;
-            height: 3rem;
-            width: 60%;
-            padding-left: 2rem;
-            border: 0.1rem solid $grey-primary;
-            border-radius: 0.2rem;
-            background-color: $grey-secondary;
-            font-size: 2rem;
         }
 
         .--left {

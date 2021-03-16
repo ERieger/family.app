@@ -22,7 +22,6 @@
   align-content: center;
 }
 .login__text .--login-text {
-  margin-top: 3rem;
   height: 3rem;
   width: 60%;
   padding-left: 2rem;
@@ -30,6 +29,7 @@
   border-radius: 0.2rem;
   background-color: #e6e6e6;
   font-size: 2rem;
+  margin-top: 3rem;
 }
 .login__text .--left {
   background: linear-gradient(149deg, #94066a 0%, #c13333 100%);
@@ -120,6 +120,16 @@
 .fam-reg .create {
   height: 100%;
   width: 100%;
+}
+.fam-reg .create .--text-input {
+  height: 3rem;
+  width: 60%;
+  padding-left: 2rem;
+  border: 0.1rem solid #707070;
+  border-radius: 0.2rem;
+  background-color: #e6e6e6;
+  font-size: 2rem;
+  margin: 3rem;
 }
 .fam-reg h1 {
   font-size: 4rem;

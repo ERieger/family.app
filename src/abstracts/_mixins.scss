@@ -6,3 +6,13 @@
     align-items: center;
     align-content: center;
 }
+
+@mixin text-input {
+    height: 3rem;
+    width: 60%;
+    padding-left: 2rem;
+    border: 0.1rem solid $grey-primary;
+    border-radius: 0.2rem;
+    background-color: $grey-secondary;
+    font-size: 2rem;
+}
