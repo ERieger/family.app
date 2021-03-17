@@ -13,5 +13,5 @@ const consts = {
     famJoin: document.querySelector('#fam-join'),
     famCreateForm: document.querySelector('#fam-reg-create'),
     famNameIn: document.querySelector('#family-name'),
-    createFamBtn: document.querySelector('#create-fam-btn');
+    createFamBtn: document.querySelector('#create-fam-btn')
 }
