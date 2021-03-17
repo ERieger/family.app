@@ -108,11 +108,11 @@ function writeUserToDB() {
     let email = consts.txtEmail.value;
 
     users.doc(uid).set({ // Write to db
-            username: username,
-            uid: uid,
-            email: email,
-            family: false
-        })
+        username: username,
+        uid: uid,
+        email: email,
+        family: false
+    })
         .then(() => { // If success
             console.log("Document successfully written!");
         })
@@ -127,7 +127,7 @@ function writeUserToDB() {
 function loadFamily() {
     if (!familyUID) {
         consts.famReg.classList.remove('hidden');
-        consts.famCreate.addEventListener('click', createFamily);
+        consts.famCreate.addEventListener('click', loadFamUI);
         consts.famJoin.addEventListener('click', joinFamily);
     } else {
         consts.appPage.classList.remove('hidden');
@@ -148,13 +148,31 @@ function createUUID() {
     return uuid;
 }
 
-function createFamily() {
+function loadFamUI() {
     console.log('create');
-
     consts.famSelectForm.classList.add('hidden');
     consts.famCreateForm.classList.remove('hidden');
-    // families.doc(createUUID())
+
+    consts.createFamBtn.addEventListener('click', createFamily);
 }
+
+// function createFamily() {
+//     let exists = true;
+
+//     do {
+//         familyUID = families.doc(createUUID());
+
+//         families.doc().get().then((doc) => {
+//             if (doc.exists) {
+                
+//             } else {
+//                 families.doc(familyUID)
+//             }
+//         }).catch((error) => { // Catch any errors
+//             console.log("Error getting document:", error);
+//         });
+//     } while (!exists);
+// }
 
 function joinFamily() {
     console.log('join');
