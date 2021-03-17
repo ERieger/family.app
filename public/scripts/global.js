@@ -11,5 +11,6 @@ const consts = {
     famSelectForm: document.querySelector('#fam-reg-select'),
     famCreate: document.querySelector('#fam-create'),
     famJoin: document.querySelector('#fam-join'),
-    famCreateForm: document.querySelector('#fam-reg-create')
+    famCreateForm: document.querySelector('#fam-reg-create'),
+    famNameIn: document.querySelector('#family-name')
 }
