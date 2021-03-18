@@ -48,16 +48,16 @@ function createFamily() {
             throw 'That user exists, please submit again.'
         } else {
             families.doc(familyUID).set({
-                    name: familyName,
-                    uuid: familyUID
-                })
+                name: familyName,
+                uuid: familyUID
+            })
                 .then(() => {
                     console.log("Document successfully written!");
                     users.doc(auth.currentUser.uid).set({ // Write to db
-                            family: familyUID
-                        }, {
-                            merge: true
-                        })
+                        family: familyUID
+                    }, {
+                        merge: true
+                    })
                         .then(() => { // If success
                             console.log("Document successfully written!");
                         })
@@ -65,8 +65,8 @@ function createFamily() {
                             console.error("Error writing document: ", error);
                         });
 
-                        consts.famReg.classList.add('hidden');
-                        loadFamily();
+                    consts.famReg.classList.add('hidden');
+                    loadFamily();
                 })
                 .catch((error) => {
                     console.error("Error writing document: ", error);
@@ -83,4 +83,12 @@ function joinFamily() {
 
 function displayData() {
     console.log('display data');
+
+    families.doc(familyUID).get().then((doc) => {
+        console.log(doc.data());
+        consts.headTitle.innerHTML = `The ${doc.data().name} Family`;
+
+    }).catch((error) => { // Catch any errors
+        console.log("Error:", error);
+    });
 }

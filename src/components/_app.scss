@@ -8,7 +8,7 @@
     grid-template-columns: min-content 100%;
     grid-template-rows: min-content 100%;
     grid-template-areas:
-        'left-nav .'
+        'left-nav page-head'
         'left-nav .';
 
     .left-nav {
@@ -68,5 +68,13 @@
             }
         }
 
+    }
+
+    .header {
+        grid-area: page-head;
+
+        &__title {
+
+        }
     }
 }

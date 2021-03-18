@@ -213,7 +213,7 @@
   display: grid;
   grid-template-columns: min-content 100%;
   grid-template-rows: min-content 100%;
-  grid-template-areas: "left-nav ." "left-nav .";
+  grid-template-areas: "left-nav page-head" "left-nav .";
 }
 .app .left-nav {
   grid-area: left-nav;
@@ -255,7 +255,9 @@
 .app .left-nav__settings:hover {
   background-color: #e6e6e6;
 }
-
+.app .header {
+  grid-area: page-head;
+}
 * {
   font-size: 10px;
   margin: 0;
