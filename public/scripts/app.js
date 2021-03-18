@@ -5,6 +5,8 @@ const db = firebase.firestore();
 const users = db.collection('users');
 const families = db.collection('families');
 
+let username;
+
 function loadFamily() {
     if (!familyUID) {
         consts.famReg.classList.remove('hidden');
@@ -12,6 +14,13 @@ function loadFamily() {
         consts.famJoin.addEventListener('click', joinFamily);
     } else {
         consts.appPage.classList.remove('hidden');
+        users.doc(auth.currentUser.uid).get().then((doc) => {
+            username = doc.data().username;
+        })
+            .catch((error) => { // Catch errors
+                console.error("Error: ", error);
+            });
+
         displayData();
     }
 }
@@ -41,6 +50,7 @@ function loadFamUI() {
 
 function createFamily() {
     let familyName = consts.famNameIn.value;
+
     familyUID = createUUID();
 
     families.doc(familyUID).get().then((doc) => {
@@ -60,6 +70,17 @@ function createFamily() {
                     })
                         .then(() => { // If success
                             console.log("Document successfully written!");
+                            families.doc(familyUID).set({ // Write to db
+                                members: firebase.firestore.FieldValue.arrayUnion(username)
+                            }, {
+                                merge: true
+                            })
+                                .then(() => { // If success
+                                    console.log("Document successfully written!");
+                                })
+                                .catch((error) => { // Catch errors
+                                    console.error("Error writing document: ", error);
+                                });
                         })
                         .catch((error) => { // Catch errors
                             console.error("Error writing document: ", error);

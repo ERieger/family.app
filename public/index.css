@@ -211,8 +211,8 @@
   height: 100vh;
   max-width: 100%;
   display: grid;
-  grid-template-columns: min-content 100%;
-  grid-template-rows: min-content 100%;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content 1fr;
   grid-template-areas: "left-nav page-head" "left-nav .";
 }
 .app .left-nav {
@@ -255,9 +255,16 @@
 .app .left-nav__settings:hover {
   background-color: #e6e6e6;
 }
-.app .header {
+.app__header {
   grid-area: page-head;
+  display: flex;
 }
+.app__header .--title {
+  color: #707070;
+  padding: 1rem;
+  font-size: 3rem;
+}
+
 * {
   font-size: 10px;
   margin: 0;

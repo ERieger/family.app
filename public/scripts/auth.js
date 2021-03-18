@@ -86,7 +86,6 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         }).catch((error) => { // Catch any errors
             console.log("Error getting document:", error);
         });
-
     } else {
         console.log('not logged in.');
         consts.appPage.classList.add('hidden');

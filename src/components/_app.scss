@@ -2,14 +2,14 @@
     background-color: $grey-secondary;
     width: 100vw;
     height: 100vh;
-    max-width:100%;
+    max-width: 100%;
 
     display: grid;
-    grid-template-columns: min-content 100%;
-    grid-template-rows: min-content 100%;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content 1fr;
     grid-template-areas:
-        'left-nav page-head'
-        'left-nav .';
+        "left-nav page-head"
+        "left-nav .";
 
     .left-nav {
         grid-area: left-nav;
@@ -26,8 +26,8 @@
             transition: 0.5s;
             width: 4rem;
             margin: 1rem;
-            padding: .5rem;
-            border-radius: .5rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
         }
 
         &__signout {
@@ -67,14 +67,16 @@
                 background-color: lighten($ui-dark, 90%);
             }
         }
-
     }
 
-    .header {
+    &__header {
         grid-area: page-head;
+        display: flex;
 
-        &__title {
-
+        & .--title {
+            color: $grey-primary;
+            padding: 1rem;
+            font-size: 3rem;
         }
     }
 }
