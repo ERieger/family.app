@@ -9,7 +9,7 @@
     grid-template-rows: min-content 1fr;
     grid-template-areas:
         "left-nav page-head"
-        "left-nav .";
+        "left-nav apps";
 
     .left-nav {
         grid-area: left-nav;
@@ -77,6 +77,29 @@
             color: $grey-primary;
             padding: 1rem;
             font-size: 3rem;
+        }
+    }
+
+    .widgets {
+        grid-area: apps;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+
+        .todo {
+            margin: 1rem;
+            width: 30rem;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: min-content 100%;
+            grid-template-areas: 
+            "title ."
+            ". .";
+
+            &__title {
+                grid-area: title;
+            }
         }
     }
 }

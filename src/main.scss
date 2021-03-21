@@ -1,5 +1,6 @@
 // sass --watch src/main.scss public/index.css
 // sass src/main.scss public/index.css
+// npx postcss public/index.css --use autoprefixer -d build/
 
 @import 'abstracts/variables', 'abstracts/fonts', 'abstracts/mixins';
 @import 'components/header', 'components/login', 'components/family-reg', 'components/app';
