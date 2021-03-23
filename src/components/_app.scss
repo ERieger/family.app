@@ -82,9 +82,14 @@
 
     .widgets {
         grid-area: apps;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
         width: 100%;
         height: 100%;
         overflow-x: hidden;
+        overflow-y: hidden;
+        display: flex;
 
         .todo {
             margin: 1rem;
@@ -93,12 +98,27 @@
             display: grid;
             grid-template-columns: 2fr 1fr;
             grid-template-rows: min-content 100%;
-            grid-template-areas: 
-            "title ."
-            ". .";
+            grid-template-areas:
+                "title alert"
+                "todo-list todo-list";
+            background-color: $ui-todo;
 
             &__title {
                 grid-area: title;
+                padding: .5rem;
+                font-size: 2.5rem;
+                color: $text-light
+            }
+
+            &__alert {
+                grid-area: alert;
+                width: 100%;
+                height: 100%;
+                background-color: darken();
+            }
+
+            &__list {
+                grid-area: todo-list;
             }
         }
     }
