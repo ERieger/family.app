@@ -15,8 +15,8 @@ function loadFamily() {
     } else {
         consts.appPage.classList.remove('hidden');
         users.doc(auth.currentUser.uid).get().then((doc) => {
-            username = doc.data().username;
-        })
+                username = doc.data().username;
+            })
             .catch((error) => { // Catch errors
                 console.error("Error: ", error);
             });
@@ -58,23 +58,21 @@ function createFamily() {
             throw 'That user exists, please submit again.'
         } else {
             families.doc(familyUID).set({
-                name: familyName,
-                uuid: familyUID
-            })
+                    name: familyName,
+                    uuid: familyUID
+                })
                 .then(() => {
                     console.log("Document successfully written!");
                     users.doc(auth.currentUser.uid).set({ // Write to db
-                        family: familyUID
-                    }, {
-                        merge: true
-                    })
+                            family: familyUID
+                        }, {
+                            merge: true
+                        })
                         .then(() => { // If success
                             console.log("Document successfully written!");
-                            families.doc(familyUID).set({ // Write to db
-                                members: firebase.firestore.FieldValue.arrayUnion(username)
-                            }, {
-                                merge: true
-                            })
+                            families.doc(familyUID).update({ // Write to db
+                                    members: firebase.firestore.FieldValue.arrayUnion(username)
+                                })
                                 .then(() => { // If success
                                     console.log("Document successfully written!");
                                 })
@@ -104,12 +102,17 @@ function joinFamily() {
 
 function displayData() {
     console.log('display data');
+    let data;
 
     families.doc(familyUID).get().then((doc) => {
         console.log(doc.data());
+        data = doc.data();
         consts.headTitle.innerHTML = `The ${doc.data().name} Family`;
-
     }).catch((error) => { // Catch any errors
         console.log("Error:", error);
     });
+}
+
+function createTodoItem() {
+
 }

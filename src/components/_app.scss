@@ -31,14 +31,6 @@
         }
 
         &__signout {
-            background-image: url(./images/logout.svg);
-            background-repeat: no-repeat;
-            background-position: center top;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-
-        &__signout {
             &:hover {
                 background-color: lighten($ui-dark, 90%);
             }
@@ -93,8 +85,7 @@
 
         .todo {
             margin: 0 1rem 1rem 1rem;
-            width: 30rem;
-            // height: 100%;
+            width: 35rem;
             display: grid;
             grid-template-columns: 2fr 1fr;
             grid-template-rows: min-content 100%;
@@ -117,10 +108,127 @@
                 height: 100%;
                 background-color: darken($ui-todo, 10%);
                 border-radius: 0 .5rem 0 1rem;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
             }
 
-            &__list {
+            &__add-button {
+                width: 4rem;
+                padding: .5rem;
+                margin-left: auto;
+            }
+
+            &__count {
+                color: $text-light;
+                font-size: 2rem;
+                margin: .5rem;
+            }
+
+            &__status {
+                width: 2rem;
+                height: 2rem;
+                border: solid $background-secondary .1rem;
+                border-radius: 4rem;
+                margin: .5rem;
+
+                &.--ok {
+                    background-color: $ui-success;
+                }
+
+                &.--meh {
+                    background-color: $ui-in-progress;
+                }
+
+                &.--overdue {
+                    background-color: $ui-error;
+                }
+            }
+
+            .list {
                 grid-area: todo-list;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-items: stretch;
+
+                .input {
+                    display: grid;
+                    grid-template-columns: 3.5rem 1fr 1fr;
+                    grid-template-rows: min-content min-content min-content;
+                    grid-template-areas:
+                        'taskIn taskIn taskIn'
+                        'dueDate dueDate dueDate'
+                        'icons icons icons';
+
+                    &__task {
+                        grid-area: taskIn;
+                    }
+
+                    &__dueDate {
+                        grid-area: dueDate;
+                    }
+                }
+
+                .item {
+                    display: grid;
+                    grid-template-columns: 3.5rem 1fr 1fr;
+                    grid-template-rows: min-content min-content min-content;
+                    grid-template-areas:
+                        'task task task'
+                        'check due due'
+                        'icons icons icons';
+
+                    padding: .5rem 1rem .5rem 1rem;
+                    margin: 0;
+
+                    &__task {
+                        font-size: 2rem;
+                        color: $text-light;
+                        grid-area: task;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                    }
+
+                    &__due {
+                        grid-area: due;
+                        color: $text-light;
+                        font-size: 1.5rem;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                    }
+
+                    &__check {
+                        grid-area: check;
+                        background-color: $ui-error;
+                        height: 2.5rem;
+                        width: 2.5rem;
+                        border: solid .2rem $background-secondary;
+                        border-radius: 4rem;
+                    }
+
+                    &__icons {
+                        width: 100%;
+                        grid-area: icons;
+                        height: 3.5rem;
+                        display: flex;
+                        flex-direction: row;
+
+                        .icon {
+                            padding: 0;
+                            margin: .5rem .5rem .5rem 0;
+                            width: 2.5rem;
+                            height: 2.5rem;
+
+                            p {
+                                font-size: 1.5rem;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

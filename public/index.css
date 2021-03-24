@@ -233,13 +233,6 @@
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
-.app .left-nav__signout {
-  background-image: url(./images/logout.svg);
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-attachment: fixed;
-  background-size: cover;
-}
 .app .left-nav__signout:hover {
   background-color: #e6e6e6;
 }
@@ -277,7 +270,7 @@
 }
 .app .widgets .todo {
   margin: 0 1rem 1rem 1rem;
-  width: 30rem;
+  width: 35rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: min-content 100%;
@@ -297,9 +290,103 @@
   height: 100%;
   background-color: #57a0d1;
   border-radius: 0 0.5rem 0 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
-.app .widgets .todo__list {
+.app .widgets .todo__add-button {
+  width: 4rem;
+  padding: 0.5rem;
+  margin-left: auto;
+}
+.app .widgets .todo__count {
+  color: #ffffff;
+  font-size: 2rem;
+  margin: 0.5rem;
+}
+.app .widgets .todo__status {
+  width: 2rem;
+  height: 2rem;
+  border: solid #ffffff 0.1rem;
+  border-radius: 4rem;
+  margin: 0.5rem;
+}
+.app .widgets .todo__status.--ok {
+  background-color: #77b95b;
+}
+.app .widgets .todo__status.--meh {
+  background-color: #eeac4a;
+}
+.app .widgets .todo__status.--overdue {
+  background-color: #da4d4d;
+}
+.app .widgets .todo .list {
   grid-area: todo-list;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.app .widgets .todo .list .input {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr 1fr;
+  grid-template-rows: min-content min-content min-content;
+  grid-template-areas: "taskIn taskIn taskIn" "dueDate dueDate dueDate" "icons icons icons";
+}
+.app .widgets .todo .list .input__task {
+  grid-area: taskIn;
+}
+.app .widgets .todo .list .input__dueDate {
+  grid-area: dueDate;
+}
+.app .widgets .todo .list .item {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr 1fr;
+  grid-template-rows: min-content min-content min-content;
+  grid-template-areas: "task task task" "check due due" "icons icons icons";
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 0;
+}
+.app .widgets .todo .list .item__task {
+  font-size: 2rem;
+  color: #ffffff;
+  grid-area: task;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.app .widgets .todo .list .item__due {
+  grid-area: due;
+  color: #ffffff;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.app .widgets .todo .list .item__check {
+  grid-area: check;
+  background-color: #da4d4d;
+  height: 2.5rem;
+  width: 2.5rem;
+  border: solid 0.2rem #ffffff;
+  border-radius: 4rem;
+}
+.app .widgets .todo .list .item__icons {
+  width: 100%;
+  grid-area: icons;
+  height: 3.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.app .widgets .todo .list .item__icons .icon {
+  padding: 0;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.app .widgets .todo .list .item__icons .icon p {
+  font-size: 1.5rem;
 }
 
 * {
@@ -311,6 +398,42 @@
 
 .hidden {
   display: none;
+}
+
+.icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 4rem;
+  text-align: center;
+  color: white;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon p {
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+.icon.--yellow {
+  background: #fcba03;
+  background: linear-gradient(54deg, #fcba03, #fedd81);
+}
+.icon.--green {
+  background: #56c74a;
+  background: linear-gradient(54deg, #56c74a, #b1e5ab);
+}
+.icon.--blue {
+  background: #0099ff;
+  background: linear-gradient(54deg, #0099ff, #80ccff);
+}
+.icon.--purple {
+  background: #d617fc;
+  background: linear-gradient(54deg, #d617fc, #ec95fe);
+}
+.icon.--red {
+  background: #fa2020;
+  background: linear-gradient(54deg, #fa2020, #fd9d9d);
 }
 
 /*# sourceMappingURL=index.css.map */

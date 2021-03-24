@@ -1,0 +1,4 @@
+@function gradient($colour, $ammount) {
+    $gradient: linear-gradient(54deg, $colour, lighten($colour, $ammount));
+    @return $gradient;
+}

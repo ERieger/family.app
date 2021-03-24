@@ -9,3 +9,45 @@
 .hidden {
     display: none;
 }
+
+.icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 4rem;
+    text-align: center;
+    color: white;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-size: 2.5rem;
+        font-weight: bolder;
+    }
+
+    &.--yellow {
+        background: $ui-yellow;
+        background: gradient($ui-yellow, 25%);
+    }
+
+    &.--green {
+        background: $ui-green;
+        background: gradient($ui-green, 25%);
+    }
+
+    &.--blue {
+        background: $ui-blue;
+        background: gradient($ui-blue, 25%);
+    }
+
+    &.--purple {
+        background: $ui-purple;
+        background: gradient($ui-purple, 25%);
+    }
+
+    &.--red {
+        background: $ui-red;
+        background: gradient($ui-red, 25%);
+    }
+}

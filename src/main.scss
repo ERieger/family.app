@@ -2,7 +2,7 @@
 // sass src/main.scss public/index.css
 // npx postcss public/index.css --use autoprefixer -d build/
 
-@import 'abstracts/variables', 'abstracts/fonts', 'abstracts/mixins';
+@import 'abstracts/variables', 'abstracts/fonts', 'abstracts/mixins', 'abstracts/functions';
 @import 'components/header', 'components/login', 'components/family-reg', 'components/app';
 
 @import 'global/global';

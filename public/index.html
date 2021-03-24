@@ -92,11 +92,37 @@
       <div class="todo">
         <h1 class="todo__title">Todo</h1>
         <div class="todo__alert">
-          <div class="todo__count"></div>
-          <img src="./images/plus.svg" alt="+" class="todo__add-button">
+          <p id="todo-count" class="todo__count">1</p>
+          <div class="todo__status --meh" id="status"></div>
+          <img src="./images/plus.svg" id="add-todo" alt="+" class="todo__add-button">
         </div>
-        <div class="todo__list">
 
+        <div class="list">
+          <div class="input">
+            <input type="text" class="input__task" placeholder="Task">
+
+            <input type="datetime-local" class="input__dueDate" placeholder="">
+          </div>
+
+          <div class="item">
+            <p class="item__task">Take out recycling.</p>
+            <p class="item__due">Due: 25/02/2020</p>
+            <div class="item__check"></div>
+            <div class="item__icons">
+              <div class="icon --red">
+                <p>LR</p>
+              </div>
+              <div class="icon --yellow">
+                <p>JR</p>
+              </div>
+              <div class="icon --purple">
+                <p>ER</p>
+              </div>
+              <div class="icon --green">
+                <p>GR</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
