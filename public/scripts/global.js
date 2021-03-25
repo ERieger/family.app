@@ -14,5 +14,7 @@ const consts = {
     famCreateForm: document.querySelector('#fam-reg-create'),
     famNameIn: document.querySelector('#family-name'),
     createFamBtn: document.querySelector('#create-fam-btn'),
-    headTitle: document.querySelector('#head-title')
+    headTitle: document.querySelector('#head-title'),
+    todoInput: document.querySelector('#todo-input'),
+    inputIcons: document.querySelector('#input-icons')
 }

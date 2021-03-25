@@ -94,14 +94,14 @@
         <div class="todo__alert">
           <p id="todo-count" class="todo__count">1</p>
           <div class="todo__status --meh" id="status"></div>
-          <img src="./images/plus.svg" id="add-todo" alt="+" class="todo__add-button">
+          <img src="./images/plus.svg" id="add-todo" onclick="createTodoItem()" alt="+" class="todo__add-button">
         </div>
 
         <div class="list">
-          <div class="input">
+          <div id="todo-input" class="input hidden">
             <input type="text" class="input__task" placeholder="Task">
-
             <input type="datetime-local" class="input__dueDate" placeholder="">
+            <div id="input-icons" class="input__icons"></div>
           </div>
 
           <div class="item">

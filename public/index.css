@@ -330,15 +330,51 @@
 }
 .app .widgets .todo .list .input {
   display: grid;
-  grid-template-columns: 3.5rem 1fr 1fr;
+  grid-template-columns: min-content 1fr 1fr;
   grid-template-rows: min-content min-content min-content;
   grid-template-areas: "taskIn taskIn taskIn" "dueDate dueDate dueDate" "icons icons icons";
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 0;
 }
 .app .widgets .todo .list .input__task {
   grid-area: taskIn;
+  margin: 0;
+  padding: 0;
+  border: hidden;
+  background: none;
+  color: #ffffff;
+  font-size: 2rem;
+}
+.app .widgets .todo .list .input__task::placeholder {
+  color: #ffffff;
 }
 .app .widgets .todo .list .input__dueDate {
   grid-area: dueDate;
+  margin: 0;
+  padding: 0;
+  border: hidden;
+  background: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+.app .widgets .todo .list .input__dueDate::placeholder {
+  color: #ffffff;
+}
+.app .widgets .todo .list .input__icons {
+  width: 100%;
+  grid-area: icons;
+  height: 3.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.app .widgets .todo .list .input__icons .icon {
+  padding: 0;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.app .widgets .todo .list .input__icons .icon p {
+  font-size: 1.5rem;
 }
 .app .widgets .todo .list .item {
   display: grid;
@@ -397,7 +433,8 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
+  visibility: hidden !important;
 }
 
 .icon {

@@ -114,5 +114,25 @@ function displayData() {
 }
 
 function createTodoItem() {
+    consts.todoInput.classList.remove('hidden');
+    families.doc(familyUID).get().then((doc) => {
+        for (let i ; i < doc.data().length ; i++) {
+            let item = {
+                parent: document.createElement('div'),
+                child: document.createElement('p')
+            }
+
+            parent.classList.add('icon');
+            parent.classList.add('--blue');
+            // parent.appendChild(child);
+            consts.inputIcons.appendChild(parent);
+        }
+    });
 
 }
+
+// let elements = {
+//     parent: document.createElement('div'),
+//     taskTitle: document.createElement('p'),
+//     taskDue: document.createElement('p'),
+// }

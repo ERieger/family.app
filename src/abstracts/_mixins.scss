@@ -16,3 +16,15 @@
     background-color: $grey-secondary;
     font-size: 2rem;
 }
+
+@mixin addTask {
+    margin: 0;
+    padding: 0;
+    border: hidden;
+    background: none;
+    color: $text-light;
+
+    &::placeholder {
+        color: $text-light;
+    }
+}
