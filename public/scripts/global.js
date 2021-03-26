@@ -16,5 +16,6 @@ const consts = {
     createFamBtn: document.querySelector('#create-fam-btn'),
     headTitle: document.querySelector('#head-title'),
     todoInput: document.querySelector('#todo-input'),
-    inputIcons: document.querySelector('#input-icons')
+    inputIcons: document.querySelector('#input-icons'),
+    todoAddBtn: document.querySelector('#add-todo')
 }

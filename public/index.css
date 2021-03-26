@@ -367,13 +367,13 @@
   display: flex;
   flex-direction: row;
 }
-.app .widgets .todo .list .input__icons .icon {
+.app .widgets .todo .list .input__icons .createIcon {
   padding: 0;
   margin: 0.5rem 0.5rem 0.5rem 0;
   width: 2.5rem;
   height: 2.5rem;
 }
-.app .widgets .todo .list .input__icons .icon p {
+.app .widgets .todo .list .input__icons .createIcon p {
   font-size: 1.5rem;
 }
 .app .widgets .todo .list .item {
@@ -471,6 +471,10 @@
 .icon.--red {
   background: #fa2020;
   background: linear-gradient(54deg, #fa2020, #fd9d9d);
+}
+.icon.--not-selected {
+  background: #707070;
+  background: linear-gradient(54deg, #707070, #b0b0b0);
 }
 
 /*# sourceMappingURL=index.css.map */

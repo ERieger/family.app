@@ -51,4 +51,9 @@
         background: $ui-red;
         background: gradient($ui-red, 25%);
     }
+
+    &.--not-selected {
+        background: $grey-primary;
+        background: gradient($grey-primary, 25%);
+    }
 }

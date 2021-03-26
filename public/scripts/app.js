@@ -7,6 +7,8 @@ const families = db.collection('families');
 
 let username;
 
+consts.todoAddBtn.addEventListener('click', createTodoItem);
+
 function loadFamily() {
     if (!familyUID) {
         consts.famReg.classList.remove('hidden');
@@ -15,8 +17,8 @@ function loadFamily() {
     } else {
         consts.appPage.classList.remove('hidden');
         users.doc(auth.currentUser.uid).get().then((doc) => {
-                username = doc.data().username;
-            })
+            username = doc.data().username;
+        })
             .catch((error) => { // Catch errors
                 console.error("Error: ", error);
             });
@@ -58,21 +60,21 @@ function createFamily() {
             throw 'That user exists, please submit again.'
         } else {
             families.doc(familyUID).set({
-                    name: familyName,
-                    uuid: familyUID
-                })
+                name: familyName,
+                uuid: familyUID
+            })
                 .then(() => {
                     console.log("Document successfully written!");
                     users.doc(auth.currentUser.uid).set({ // Write to db
-                            family: familyUID
-                        }, {
-                            merge: true
-                        })
+                        family: familyUID
+                    }, {
+                        merge: true
+                    })
                         .then(() => { // If success
                             console.log("Document successfully written!");
                             families.doc(familyUID).update({ // Write to db
-                                    members: firebase.firestore.FieldValue.arrayUnion(username)
-                                })
+                                members: firebase.firestore.FieldValue.arrayUnion(username)
+                            })
                                 .then(() => { // If success
                                     console.log("Document successfully written!");
                                 })
@@ -116,19 +118,39 @@ function displayData() {
 function createTodoItem() {
     consts.todoInput.classList.remove('hidden');
     families.doc(familyUID).get().then((doc) => {
-        for (let i ; i < doc.data().length ; i++) {
+        console.log(doc.data().members, doc.data().members.length);
+        console.log('about to for');
+
+        while (consts.inputIcons.firstChild) {
+            node.removeChild(myNode.firstChild);
+        }
+
+        for (let i = 0; i < doc.data().members.length; i++) {
+            console.log('foring');
             let item = {
                 parent: document.createElement('div'),
-                child: document.createElement('p')
+                child: document.createElement('p'),
+                childId: `icon-${i}`
             }
 
-            parent.classList.add('icon');
-            parent.classList.add('--blue');
-            // parent.appendChild(child);
-            consts.inputIcons.appendChild(parent);
-        }
-    });
+            let member = doc.data().members[i];
+            let id = member.substring(0, 2).toUpperCase();
+            console.log(member, id);
 
+            item.parent.classList.add('createIcon');
+            item.parent.classList.add('--not-selected');
+            item.child.setAttribute('id', item.childId);
+            item.parent.appendChild(item.child);
+            consts.inputIcons.appendChild(item.parent);
+            document.querySelector(`#${item.childId}`).innerHTML = id;
+        }
+    }).catch((error) => { // Catch any errors
+        console.log("Error:", error);
+    });
+}
+
+function addUserToTask(elem) {
+    console.log(elem);
 }
 
 // let elements = {
