@@ -330,9 +330,9 @@
 }
 .app .widgets .todo .list .input {
   display: grid;
-  grid-template-columns: min-content 1fr 1fr;
+  grid-template-columns: min-content 2fr 1fr;
   grid-template-rows: min-content min-content min-content;
-  grid-template-areas: "taskIn taskIn taskIn" "dueDate dueDate dueDate" "icons icons icons";
+  grid-template-areas: "taskIn taskIn taskIn" "dueDate dueDate dueDate" "icons icons submit";
   padding: 0.5rem 1rem 0.5rem 1rem;
   margin: 0;
 }
@@ -366,15 +366,20 @@
   height: 3.5rem;
   display: flex;
   flex-direction: row;
+  user-select: none;
 }
-.app .widgets .todo .list .input__icons .createIcon {
+.app .widgets .todo .list .input__icons .icon {
   padding: 0;
   margin: 0.5rem 0.5rem 0.5rem 0;
   width: 2.5rem;
   height: 2.5rem;
 }
-.app .widgets .todo .list .input__icons .createIcon p {
+.app .widgets .todo .list .input__icons .icon p {
   font-size: 1.5rem;
+}
+.app .widgets .todo .list .input__submit {
+  grid-area: submit;
+  margin: 0.5rem;
 }
 .app .widgets .todo .list .item {
   display: grid;
@@ -420,6 +425,7 @@
   margin: 0.5rem 0.5rem 0.5rem 0;
   width: 2.5rem;
   height: 2.5rem;
+  user-select: none;
 }
 .app .widgets .todo .list .item__icons .icon p {
   font-size: 1.5rem;
