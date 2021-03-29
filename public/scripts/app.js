@@ -109,13 +109,11 @@ function joinFamily() {
 }
 
 function displayData() {
-    console.log('display data');
-    let data;
-
     families.doc(familyUID).get().then((doc) => {
         console.log(doc.data());
         data = doc.data();
         consts.headTitle.innerHTML = `The ${doc.data().name} Family`;
+        getTodo();
     }).catch((error) => { // Catch any errors
         console.log("Error:", error);
     });
@@ -193,24 +191,78 @@ function addTask() {
         members: task.members
     }).then(() => { // If success
         console.log("Document successfully written!");
+        task = {
+            name: undefined,
+            date: undefined,
+            members: []
+        }
     })
         .catch((error) => { // Catch errors
             console.error("Error writing document: ", error);
         });
 
-    todoInput.classList.add('hidden');
+    consts.todoInput.classList.add('hidden');
 }
 
-families.doc(familyUID).collection('todo').onSnapshot((doc) => {
-    updateTodo(doc);
+families.doc(familyUID).collection('todo').onSnapshot((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        console.log('new');
+        updateTodo(doc);
+    })
 });
 
-function updateTodo(doc) {
-    console.log(doc);
+function getTodo() {
+    families.doc(familyUID).collection('todo').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            updateTodo(doc);
+        });
+    }).catch((error) => { // Catch any errors
+        console.log("Error:", error);
+    });
 }
 
-// let elements = {
-//     parent: document.createElement('div'),
-//     taskTitle: document.createElement('p'),
-//     taskDue: document.createElement('p'),
-// }
+function updateTodo(doc) {
+    let elements = {
+        parent: document.createElement('div'),
+        taskTitle: document.createElement('p'),
+        taskDue: document.createElement('p'),
+        check: document.createElement('div'),
+        icons: document.createElement('div')
+    }
+
+    elements.parent.classList.add('item');
+    elements.taskTitle.classList.add('item__task');
+    elements.taskDue.classList.add('item__due');
+    elements.check.classList.add('item__check');
+    elements.icons.classList.add('item__icons');
+
+    elements.taskTitle.innerHTML = doc.data().name;
+    elements.taskDue.innerHTML = `Due: ${doc.data().date}`;
+
+    elements.parent.appendChild(elements.taskTitle);
+    elements.parent.appendChild(elements.taskDue);
+    elements.parent.appendChild(elements.check);
+    elements.parent.appendChild(elements.icons);
+
+
+    let colour = 'red';
+
+    for (let i = 0; i < doc.data().members.length; i++) {
+        let item = {
+            parent: document.createElement('div'),
+            child: document.createElement('p')
+        }
+
+        member = doc.data().members[i];
+        let id = member.substring(0, 2).toUpperCase();
+
+        item.parent.classList.add('icon', `--${colour}`);
+        item.child.innerHTML = id;
+        item.parent.appendChild(item.child);
+        elements.icons.appendChild(item.parent);
+    }
+
+
+    consts.list.appendChild(elements.parent);
+}
