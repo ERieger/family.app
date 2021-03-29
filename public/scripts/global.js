@@ -19,6 +19,7 @@ const consts = {
     inputIcons: document.querySelector('#input-icons'),
     todoAddBtn: document.querySelector('#add-todo'),
     todoTask: document.querySelector('#input-task'),
-    todoDateTime: document.querySelector('#input-date-time'),
+    todoDate: document.querySelector('#input-date'),
+    todoTime: document.querySelector('#input-time'),
     list: document.querySelector('#list')
 }
