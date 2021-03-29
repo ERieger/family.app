@@ -78,8 +78,11 @@ function createFamily() {
                     })
                         .then(() => { // If success
                             console.log("Document successfully written!");
-                            families.doc(familyUID).update({ // Write to db
-                                members: firebase.firestore.FieldValue.arrayUnion(username)
+                            families.doc(familyUID).collection('members').doc(username).set({ // Write to db
+                                username: username,
+                                uid: auth.currentUser.uid,
+                                colour: 'red'
+
                             })
                                 .then(() => { // If success
                                     console.log("Document successfully written!");
@@ -122,63 +125,60 @@ function displayData() {
 function createTodoItem() {
     let member;
     consts.todoInput.classList.remove('hidden');
-    families.doc(familyUID).get().then((doc) => {
-        console.log(doc.data().members, doc.data().members.length);
-        console.log('about to for');
 
-        while (consts.inputIcons.firstChild) {
-            node.removeChild(myNode.firstChild);
-        }
+    while (consts.inputIcons.firstChild) {
+        consts.inputIcons.removeChild(consts.inputIcons.firstChild);
+    }
 
-        for (let i = 0; i < doc.data().members.length; i++) {
+    families.doc(familyUID).collection('members').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
             let item = {
                 parent: document.createElement('div'),
                 child: document.createElement('p'),
-                childId: `icon-${i}`
             }
 
-            member = doc.data().members[i];
+            member = doc.data().username;
             let id = member.substring(0, 2).toUpperCase();
 
             item.parent.classList.add('icon', 'icon-button', '--not-selected');
             item.child.setAttribute('id', item.childId);
             item.parent.appendChild(item.child);
             item.parent.setAttribute('data-name', member);
-            consts.inputIcons.appendChild(item.parent);
-            document.querySelector(`#${item.childId}`).innerHTML = id;
-        }
-
-        let buttons = document.getElementsByClassName('icon-button');
-
-        for (let i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener('click', function () {
-                addUserToTask(this, buttons[i].getAttribute('data-name'));
+            item.child.innerHTML = id;
+            item.parent.addEventListener('click', function () {
+                addUserToTask(this, item.parent.getAttribute('data-name'));
             });
-        }
+            consts.inputIcons.appendChild(item.parent);
+        })
     }).catch((error) => { // Catch any errors
         console.log("Error:", error);
     });
 }
 
 function addUserToTask(elem, name) {
-    let colour = 'red';
+    let colour;
 
-    if (elem.classList.contains('--not-selected')) {
-        elem.classList = '';
-        elem.classList.add('icon', 'icon-button', `--${colour}`);
-        task.members.push(name);
-    } else {
-        elem.classList = '';
-        elem.classList.add('icon', 'icon-button', '--not-selected');
-        for (let i = 0; i < task.members.length; i++) {
-            if (task.members[i] == name) {
-                task.members.splice(i, 1);
-                break;
+    families.doc(familyUID).collection('members').doc(elem.getAttribute('data-name')).get().then((doc) => {
+        colour = doc.data().colour;
+
+        if (elem.classList.contains('--not-selected')) {
+            elem.classList = '';
+            elem.classList.add('icon', 'icon-button', `--${colour}`);
+            task.members.push(name);
+        } else {
+            elem.classList = '';
+            elem.classList.add('icon', 'icon-button', '--not-selected');
+            for (let i = 0; i < task.members.length; i++) {
+                if (task.members[i] == name) {
+                    task.members.splice(i, 1);
+                    break;
+                }
             }
         }
-    }
-
-    console.log(task);
+        console.log(task);
+    }).catch((error) => {
+        console.log("Error:", error);
+    });
 }
 
 function addTask() {
@@ -246,23 +246,28 @@ function updateTodo(doc) {
     elements.parent.appendChild(elements.icons);
 
 
-    let colour = 'red';
-
+    let colour;
     for (let i = 0; i < doc.data().members.length; i++) {
-        let item = {
-            parent: document.createElement('div'),
-            child: document.createElement('p')
-        }
+        families.doc(familyUID).collection('members').doc(doc.data().members[i]).get().then((doc) => {
+            colour = doc.data().colour;
 
-        member = doc.data().members[i];
-        let id = member.substring(0, 2).toUpperCase();
+            let item = {
+                parent: document.createElement('div'),
+                child: document.createElement('p')
+            }
 
-        item.parent.classList.add('icon', `--${colour}`);
-        item.child.innerHTML = id;
-        item.parent.appendChild(item.child);
-        elements.icons.appendChild(item.parent);
+            member = doc.data().members[i];
+            let id = member.substring(0, 2).toUpperCase();
+
+            item.parent.classList.add('icon', `--${colour}`);
+            item.child.innerHTML = id;
+            item.parent.appendChild(item.child);
+            elements.icons.appendChild(item.parent);
+
+            consts.list.appendChild(elements.parent);
+        }).catch((error) => {
+            console.log("Error:", error);
+        });
+
     }
-
-
-    consts.list.appendChild(elements.parent);
 }
