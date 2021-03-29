@@ -141,7 +141,6 @@ function createTodoItem() {
 
             member = doc.data().members[i];
             let id = member.substring(0, 2).toUpperCase();
-            console.log(member, id);
 
             item.parent.classList.add('icon', 'icon-button', '--not-selected');
             item.child.setAttribute('id', item.childId);
@@ -157,7 +156,6 @@ function createTodoItem() {
             buttons[i].addEventListener('click', function () {
                 addUserToTask(this, buttons[i].getAttribute('data-name'));
             });
-            console.log(buttons[i]);
         }
     }).catch((error) => { // Catch any errors
         console.log("Error:", error);
@@ -179,7 +177,6 @@ function addUserToTask(elem, name) {
                 task.members.splice(i, 1);
                 break;
             }
-            console.log(i);
         }
     }
 
@@ -187,7 +184,29 @@ function addUserToTask(elem, name) {
 }
 
 function addTask() {
+    task.name = consts.todoTask.value;
+    task.date = consts.todoDateTime.value;
 
+    families.doc(familyUID).collection('todo').doc().set({
+        name: task.name,
+        date: task.date,
+        members: task.members
+    }).then(() => { // If success
+        console.log("Document successfully written!");
+    })
+        .catch((error) => { // Catch errors
+            console.error("Error writing document: ", error);
+        });
+
+    todoInput.classList.add('hidden');
+}
+
+families.doc(familyUID).collection('todo').onSnapshot((doc) => {
+    updateTodo(doc);
+});
+
+function updateTodo(doc) {
+    console.log(doc);
 }
 
 // let elements = {
