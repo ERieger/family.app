@@ -6,12 +6,7 @@ const users = db.collection('users');
 const families = db.collection('families');
 
 let username;
-
-let task = {
-    name: undefined,
-    date: undefined,
-    members: []
-}
+let taskMembers = [];
 
 consts.todoAddBtn.addEventListener('click', createTodoItem);
 
@@ -23,8 +18,8 @@ function loadFamily() {
     } else {
         consts.appPage.classList.remove('hidden');
         users.doc(auth.currentUser.uid).get().then((doc) => {
-            username = doc.data().username;
-        })
+                username = doc.data().username;
+            })
             .catch((error) => { // Catch errors
                 console.error("Error: ", error);
             });
@@ -49,7 +44,6 @@ function createUUID() {
 }
 
 function loadFamUI() {
-    console.log('create');
     consts.famSelectForm.classList.add('hidden');
     consts.famCreateForm.classList.remove('hidden');
 
@@ -66,24 +60,24 @@ function createFamily() {
             throw 'That user exists, please submit again.'
         } else {
             families.doc(familyUID).set({
-                name: familyName,
-                uuid: familyUID
-            })
+                    name: familyName,
+                    uuid: familyUID
+                })
                 .then(() => {
                     console.log("Document successfully written!");
                     users.doc(auth.currentUser.uid).set({ // Write to db
-                        family: familyUID
-                    }, {
-                        merge: true
-                    })
+                            family: familyUID
+                        }, {
+                            merge: true
+                        })
                         .then(() => { // If success
                             console.log("Document successfully written!");
-                            families.doc(familyUID).collection('members').doc(username).set({ // Write to db
-                                username: username,
-                                uid: auth.currentUser.uid,
-                                colour: 'red'
+                            families.doc(familyUID).collection('members').doc(auth.currentUser.uid).set({ // Write to db
+                                    username: username,
+                                    uid: auth.currentUser.uid,
+                                    colour: 'red'
 
-                            })
+                                })
                                 .then(() => { // If success
                                     console.log("Document successfully written!");
                                 })
@@ -113,7 +107,6 @@ function joinFamily() {
 
 function displayData() {
     families.doc(familyUID).get().then((doc) => {
-        console.log(doc.data());
         data = doc.data();
         consts.headTitle.innerHTML = `The ${doc.data().name} Family`;
         getTodo();
@@ -140,13 +133,13 @@ function createTodoItem() {
             member = doc.data().username;
             let id = member.substring(0, 2).toUpperCase();
 
+
             item.parent.classList.add('icon', 'icon-button', '--not-selected');
             item.child.setAttribute('id', item.childId);
             item.parent.appendChild(item.child);
-            item.parent.setAttribute('data-name', member);
             item.child.innerHTML = id;
             item.parent.addEventListener('click', function () {
-                addUserToTask(this, item.parent.getAttribute('data-name'));
+                addUserToTask(this, doc.data().uid);
             });
             consts.inputIcons.appendChild(item.parent);
         })
@@ -155,48 +148,44 @@ function createTodoItem() {
     });
 }
 
-function addUserToTask(elem, name) {
+function addUserToTask(elem, uid) {
     let colour;
 
-    families.doc(familyUID).collection('members').doc(elem.getAttribute('data-name')).get().then((doc) => {
+    families.doc(familyUID).collection('members').doc(uid).get().then((doc) => {
         colour = doc.data().colour;
 
         if (elem.classList.contains('--not-selected')) {
             elem.classList = '';
             elem.classList.add('icon', 'icon-button', `--${colour}`);
-            task.members.push(name);
+            taskMembers.push(uid);
         } else {
             elem.classList = '';
             elem.classList.add('icon', 'icon-button', '--not-selected');
-            for (let i = 0; i < task.members.length; i++) {
-                if (task.members[i] == name) {
-                    task.members.splice(i, 1);
+            for (let i = 0; i < taskMembers.length; i++) {
+                if (taskMembers[i] == uid) {
+                    taskMembers.splice(i, 1);
                     break;
                 }
             }
         }
-        console.log(task);
     }).catch((error) => {
         console.log("Error:", error);
     });
 }
 
 function addTask() {
-    task.name = consts.todoTask.value;
-    task.date = consts.todoDateTime.value;
+    let name = consts.todoTask.value;
+    let date = consts.todoDate.value;
+    let time = consts.todoTime.value;
 
     families.doc(familyUID).collection('todo').doc().set({
-        name: task.name,
-        date: task.date,
-        members: task.members
-    }).then(() => { // If success
-        console.log("Document successfully written!");
-        task = {
-            name: undefined,
-            date: undefined,
-            members: []
-        }
-    })
+            name: name,
+            date: date,
+            time: time,
+            members: taskMembers
+        }).then(() => { // If success
+            console.log("Document successfully written!");
+        })
         .catch((error) => { // Catch errors
             console.error("Error writing document: ", error);
         });
@@ -223,6 +212,10 @@ function getTodo() {
 }
 
 function updateTodo(doc) {
+    let member;
+
+    console.log(doc.data());
+
     let elements = {
         parent: document.createElement('div'),
         taskTitle: document.createElement('p'),
@@ -238,15 +231,15 @@ function updateTodo(doc) {
     elements.icons.classList.add('item__icons');
 
     elements.taskTitle.innerHTML = doc.data().name;
-    elements.taskDue.innerHTML = `Due: ${doc.data().date}`;
+    elements.taskDue.innerHTML = `Due: ${doc.data().date} at ${doc.data().time}`;
 
     elements.parent.appendChild(elements.taskTitle);
     elements.parent.appendChild(elements.taskDue);
     elements.parent.appendChild(elements.check);
     elements.parent.appendChild(elements.icons);
 
-
     let colour;
+
     for (let i = 0; i < doc.data().members.length; i++) {
         families.doc(familyUID).collection('members').doc(doc.data().members[i]).get().then((doc) => {
             colour = doc.data().colour;
@@ -256,18 +249,15 @@ function updateTodo(doc) {
                 child: document.createElement('p')
             }
 
-            member = doc.data().members[i];
+            member = doc.data().username;
             let id = member.substring(0, 2).toUpperCase();
 
             item.parent.classList.add('icon', `--${colour}`);
             item.child.innerHTML = id;
             item.parent.appendChild(item.child);
             elements.icons.appendChild(item.parent);
-
-            consts.list.appendChild(elements.parent);
-        }).catch((error) => {
-            console.log("Error:", error);
         });
-
     }
+
+    consts.list.appendChild(elements.parent);
 }

@@ -159,7 +159,7 @@
                     grid-template-rows: min-content min-content min-content;
                     grid-template-areas:
                         "taskIn taskIn taskIn"
-                        "dueDate dueDate dueDate"
+                        "dueDate dueDate dueTime"
                         "icons icons submit";
 
                     padding: 0.5rem 1rem 0.5rem 1rem;
@@ -173,6 +173,12 @@
 
                     &__dueDate {
                         grid-area: dueDate;
+                        @include addTask;
+                        font-size: 1.5rem;
+                    }
+
+                    &__dueTime {
+                        grid-area: dueTime;
                         @include addTask;
                         font-size: 1.5rem;
                     }
