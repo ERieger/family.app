@@ -70,7 +70,6 @@ consts.btnSignOut.addEventListener('click', e => {
 firebase.auth().onAuthStateChanged(firebaseUser => {
     // If signed in
     if (firebaseUser) {
-        console.log(firebaseUser);
         // Check user exists in db
         users.doc(auth.currentUser.uid).get().then((doc) => {
             if (doc.exists) { // User exists

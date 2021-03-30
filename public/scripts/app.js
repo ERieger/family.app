@@ -196,10 +196,11 @@ function addTask() {
 }
 
 families.doc(familyUID).collection('todo').onSnapshot((querySnapshot) => {
+    console.log(querySnapshot);
     querySnapshot.forEach((doc) => {
-        console.log('new');
+        console.log('new', doc.data());
         updateTodo(doc);
-    })
+    });
 });
 
 function getTodo() {
@@ -215,8 +216,6 @@ function getTodo() {
 
 function updateTodo(doc) {
     let member;
-
-    console.log(doc.data());
 
     let elements = {
         parent: document.createElement('div'),
