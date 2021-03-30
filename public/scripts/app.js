@@ -18,11 +18,14 @@ function loadFamily() {
     } else {
         consts.appPage.classList.remove('hidden');
         users.doc(auth.currentUser.uid).get().then((doc) => {
-                username = doc.data().username;
-            })
-            .catch((error) => { // Catch errors
-                console.error("Error: ", error);
-            });
+            username = doc.data().username;
+        }).catch((error) => { // Catch errors
+            console.error("Error: ", error);
+        });
+
+        while (consts.list.childNodes.length > 2) {
+            consts.list.removeChild(consts.list.lastChild);
+        }
 
         displayData();
     }
@@ -60,26 +63,28 @@ function createFamily() {
             throw 'That user exists, please submit again.'
         } else {
             families.doc(familyUID).set({
-                    name: familyName,
-                    uuid: familyUID
-                })
+                name: familyName,
+                uuid: familyUID
+            })
                 .then(() => {
                     console.log("Document successfully written!");
                     users.doc(auth.currentUser.uid).set({ // Write to db
-                            family: familyUID
-                        }, {
-                            merge: true
-                        })
+                        family: familyUID
+                    }, {
+                        merge: true
+                    })
                         .then(() => { // If success
                             console.log("Document successfully written!");
                             families.doc(familyUID).collection('members').doc(auth.currentUser.uid).set({ // Write to db
-                                    username: username,
-                                    uid: auth.currentUser.uid,
-                                    colour: 'red'
+                                username: username,
+                                uid: auth.currentUser.uid,
+                                colour: 'red'
 
-                                })
+                            })
                                 .then(() => { // If success
                                     console.log("Document successfully written!");
+                                    consts.famReg.classList.add('hidden');
+                                    loadFamily();
                                 })
                                 .catch((error) => { // Catch errors
                                     console.error("Error writing document: ", error);
@@ -88,9 +93,6 @@ function createFamily() {
                         .catch((error) => { // Catch errors
                             console.error("Error writing document: ", error);
                         });
-
-                    consts.famReg.classList.add('hidden');
-                    loadFamily();
                 })
                 .catch((error) => {
                     console.error("Error writing document: ", error);
@@ -179,13 +181,13 @@ function addTask() {
     let time = consts.todoTime.value;
 
     families.doc(familyUID).collection('todo').doc().set({
-            name: name,
-            date: date,
-            time: time,
-            members: taskMembers
-        }).then(() => { // If success
-            console.log("Document successfully written!");
-        })
+        name: name,
+        date: date,
+        time: time,
+        members: taskMembers
+    }).then(() => { // If success
+        console.log("Document successfully written!");
+    })
         .catch((error) => { // Catch errors
             console.error("Error writing document: ", error);
         });

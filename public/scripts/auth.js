@@ -90,6 +90,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         console.log('not logged in.');
         consts.appPage.classList.add('hidden');
         consts.loginPage.classList.remove('hidden');
+        familyUID = false;
     }
 });
 

@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
 .cover {
   padding: 0;
   margin: 0;
@@ -14,7 +13,6 @@
   grid-template-rows: 100vh;
   grid-template-areas: "text buttons";
 }
-
 .login__text {
   display: flex;
   flex-direction: column;
@@ -23,7 +21,6 @@
   align-items: center;
   align-content: center;
 }
-
 .login__text .--login-text {
   height: 3rem;
   width: 60%;
@@ -34,7 +31,6 @@
   font-size: 2rem;
   margin-top: 3rem;
 }
-
 .login__text .--left {
   background: linear-gradient(149deg, #94066a 0%, #c13333 100%);
   margin-top: 3rem;
@@ -46,7 +42,6 @@
   font-weight: bolder;
   font-size: 2rem;
 }
-
 .login__buttons {
   grid-area: buttons;
   display: flex;
@@ -57,7 +52,6 @@
   align-content: center;
   background-image: linear-gradient(149deg, #94066a 0%, #c13333 100%);
 }
-
 .login__buttons .--right {
   background: none;
   margin-top: 3rem;
@@ -77,10 +71,9 @@
     display: grid;
     grid-template-columns: 100vw;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: "buttons""text";
+    grid-template-areas: "buttons" "text";
   }
 }
-
 .fam-reg {
   width: 100vw;
   height: 100vh;
@@ -88,11 +81,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: ". . ."". form ."". . .";
+  grid-template-areas: ". . ." ". form ." ". . .";
   background: linear-gradient(149deg, #94066a 0%, #c13333 100%);
   text-align: center;
 }
-
 .fam-reg__form {
   grid-area: form;
   width: 100%;
@@ -101,18 +93,15 @@
   border-radius: 1rem;
   box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.4);
 }
-
 .fam-reg .select {
   height: 100%;
   width: 100%;
 }
-
 .fam-reg .select .cards {
   display: flex;
   flex-wrap: wrap;
   align-content: stretch;
 }
-
 .fam-reg .select .cards .--card {
   margin: 1rem;
   flex: 1;
@@ -122,20 +111,16 @@
   min-width: 7rem;
   transition: 0.5s;
 }
-
 .fam-reg .select .cards .--card:hover {
   border-color: #7fb7dc;
 }
-
 .fam-reg .select .cards img {
   width: 75%;
 }
-
 .fam-reg .create {
   height: 100%;
   width: 100%;
 }
-
 .fam-reg .create .--text-input {
   height: 3rem;
   width: 60%;
@@ -146,7 +131,6 @@
   font-size: 2rem;
   margin: 3rem;
 }
-
 .fam-reg .create__submit {
   background: linear-gradient(149deg, #94066a 0%, #c13333 100%);
   padding: 1rem 5rem;
@@ -157,21 +141,17 @@
   font-weight: bolder;
   font-size: 2rem;
 }
-
 .fam-reg h1 {
   font-size: 4rem;
   padding: 1rem;
 }
-
 .fam-reg h2 {
   font-size: 2.5rem;
   padding: 1rem;
 }
-
 .fam-reg h3 {
   font-size: 2rem;
 }
-
 .fam-reg p {
   font-size: 1.6rem;
 }
@@ -181,58 +161,50 @@
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-rows: 1fr 4fr 1fr;
-    grid-template-areas: ". . ."". form ."". . .";
+    grid-template-areas: ". . ." ". form ." ". . .";
   }
 }
-
 @media (max-width: 813px) {
   .fam-reg {
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
     grid-template-rows: 1fr 4fr 1fr;
-    grid-template-areas: ". . ."". form ."". . .";
+    grid-template-areas: ". . ." ". form ." ". . .";
   }
-
   .fam-reg .cards {
     display: flex;
     flex-wrap: wrap;
     align-content: stretch;
   }
-
   .fam-reg .cards .--card img {
     width: 40%;
   }
 }
-
 @media (max-width: 812px) {
   .fam-reg {
     display: grid;
     grid-template-columns: 1fr 7fr 1fr;
     grid-template-rows: 1fr min-content 1fr;
-    grid-template-areas: ". . ."". form ."". . .";
+    grid-template-areas: ". . ." ". form ." ". . .";
   }
 }
-
 @media (max-width: 395px) {
   .fam-reg {
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
     grid-template-rows: 1fr min-content 1fr;
-    grid-template-areas: ". . ."". form ."". . .";
+    grid-template-areas: ". . ." ". form ." ". . .";
   }
-
   .fam-reg .cards {
     display: flex;
     flex-wrap: wrap;
     align-content: stretch;
     flex-direction: column;
   }
-
   .fam-reg .cards .--card img {
     width: 40%;
   }
 }
-
 .app {
   background-color: #e6e6e6;
   width: 100vw;
@@ -241,9 +213,8 @@
   display: grid;
   grid-template-columns: min-content 1fr;
   grid-template-rows: min-content 1fr;
-  grid-template-areas: "left-nav page-head""left-nav apps";
+  grid-template-areas: "left-nav page-head" "left-nav apps";
 }
-
 .app .left-nav {
   grid-area: left-nav;
   display: flex;
@@ -255,7 +226,6 @@
   background-color: #ffffff;
   box-shadow: 4px 1px 8px 1px rgba(0, 0, 0, 0.33);
 }
-
 .app .left-nav .--nav-item {
   transition: 0.5s;
   width: 4rem;
@@ -263,38 +233,30 @@
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
-
 .app .left-nav__signout:hover {
   background-color: #e6e6e6;
 }
-
 .app .left-nav__todo:hover {
   background-color: #e3eff7;
 }
-
 .app .left-nav__shopping-list:hover {
   background-color: #f9e1bf;
 }
-
 .app .left-nav__meal-planner:hover {
   background-color: #ffeeee;
 }
-
 .app .left-nav__settings:hover {
   background-color: #e6e6e6;
 }
-
 .app__header {
   grid-area: page-head;
   display: flex;
 }
-
 .app__header .--title {
   color: #707070;
   padding: 1rem;
   font-size: 3rem;
 }
-
 .app .widgets {
   grid-area: apps;
   box-sizing: border-box;
@@ -306,25 +268,22 @@
   overflow-y: hidden;
   display: flex;
 }
-
 .app .widgets .todo {
   margin: 0 1rem 1rem 1rem;
   width: 35rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: min-content 100%;
-  grid-template-areas: "title alert""todo-list todo-list";
+  grid-template-areas: "title alert" "todo-list todo-list";
   background-color: #7fb7dc;
   border-radius: 0.5rem;
 }
-
 .app .widgets .todo__title {
   grid-area: title;
   padding: 0.5rem;
   font-size: 2.5rem;
   color: #ffffff;
 }
-
 .app .widgets .todo__alert {
   grid-area: alert;
   width: 100%;
@@ -335,19 +294,16 @@
   justify-content: flex-start;
   align-items: center;
 }
-
 .app .widgets .todo__add-button {
   width: 4rem;
   padding: 0.5rem;
   margin-left: auto;
 }
-
 .app .widgets .todo__count {
   color: #ffffff;
   font-size: 2rem;
   margin: 0.5rem;
 }
-
 .app .widgets .todo__status {
   width: 2rem;
   height: 2rem;
@@ -355,19 +311,15 @@
   border-radius: 4rem;
   margin: 0.5rem;
 }
-
 .app .widgets .todo__status.--ok {
   background-color: #77b95b;
 }
-
 .app .widgets .todo__status.--meh {
   background-color: #eeac4a;
 }
-
 .app .widgets .todo__status.--overdue {
   background-color: #da4d4d;
 }
-
 .app .widgets .todo .list {
   grid-area: todo-list;
   display: flex;
@@ -376,16 +328,14 @@
   justify-content: flex-start;
   align-items: stretch;
 }
-
 .app .widgets .todo .list .input {
   display: grid;
   grid-template-columns: min-content 2fr 1fr;
   grid-template-rows: min-content min-content min-content;
-  grid-template-areas: "taskIn taskIn taskIn""dueDate dueDate dueTime""icons icons submit";
+  grid-template-areas: "taskIn taskIn taskIn" "dueDate dueDate dueTime" "icons icons submit";
   padding: 0.5rem 1rem 0.5rem 1rem;
   margin: 0;
 }
-
 .app .widgets .todo .list .input__task {
   grid-area: taskIn;
   margin: 0;
@@ -395,11 +345,9 @@
   color: #ffffff;
   font-size: 2rem;
 }
-
 .app .widgets .todo .list .input__task::placeholder {
   color: #ffffff;
 }
-
 .app .widgets .todo .list .input__dueDate {
   grid-area: dueDate;
   margin: 0;
@@ -409,11 +357,9 @@
   color: #ffffff;
   font-size: 1.5rem;
 }
-
 .app .widgets .todo .list .input__dueDate::placeholder {
   color: #ffffff;
 }
-
 .app .widgets .todo .list .input__dueTime {
   grid-area: dueTime;
   margin: 0;
@@ -423,11 +369,9 @@
   color: #ffffff;
   font-size: 1.5rem;
 }
-
 .app .widgets .todo .list .input__dueTime::placeholder {
   color: #ffffff;
 }
-
 .app .widgets .todo .list .input__icons {
   width: 100%;
   grid-area: icons;
@@ -436,32 +380,27 @@
   flex-direction: row;
   user-select: none;
 }
-
 .app .widgets .todo .list .input__icons .icon {
   padding: 0;
   margin: 0.5rem 0.5rem 0.5rem 0;
   width: 2.5rem;
   height: 2.5rem;
 }
-
 .app .widgets .todo .list .input__icons .icon p {
   font-size: 1.5rem;
 }
-
 .app .widgets .todo .list .input__submit {
   grid-area: submit;
   margin: 0.5rem;
 }
-
 .app .widgets .todo .list .item {
   display: grid;
   grid-template-columns: 3.5rem 1fr 1fr;
   grid-template-rows: min-content min-content min-content;
-  grid-template-areas: "task task task""check due due""icons icons icons";
+  grid-template-areas: "task task task" "check due due" "icons icons icons";
   padding: 0.5rem 1rem 0.5rem 1rem;
   margin: 0;
 }
-
 .app .widgets .todo .list .item__task {
   font-size: 2rem;
   color: #ffffff;
@@ -470,7 +409,6 @@
   justify-content: flex-start;
   align-items: center;
 }
-
 .app .widgets .todo .list .item__due {
   grid-area: due;
   color: #ffffff;
@@ -479,7 +417,6 @@
   justify-content: flex-start;
   align-items: center;
 }
-
 .app .widgets .todo .list .item__check {
   grid-area: check;
   background-color: #da4d4d;
@@ -488,7 +425,6 @@
   border: solid 0.2rem #ffffff;
   border-radius: 4rem;
 }
-
 .app .widgets .todo .list .item__icons {
   width: 100%;
   grid-area: icons;
@@ -496,7 +432,6 @@
   display: flex;
   flex-direction: row;
 }
-
 .app .widgets .todo .list .item__icons .icon {
   padding: 0;
   margin: 0.5rem 0.5rem 0.5rem 0;
@@ -504,7 +439,6 @@
   height: 2.5rem;
   user-select: none;
 }
-
 .app .widgets .todo .list .item__icons .icon p {
   font-size: 1.5rem;
 }
@@ -532,37 +466,30 @@
   justify-content: center;
   align-items: center;
 }
-
 .icon p {
   font-size: 2.5rem;
   font-weight: bolder;
 }
-
 .icon.--yellow {
   background: #fcba03;
   background: linear-gradient(54deg, #fcba03, #fedd81);
 }
-
 .icon.--green {
   background: #56c74a;
   background: linear-gradient(54deg, #56c74a, #b1e5ab);
 }
-
 .icon.--blue {
   background: #0099ff;
   background: linear-gradient(54deg, #0099ff, #80ccff);
 }
-
 .icon.--purple {
   background: #d617fc;
   background: linear-gradient(54deg, #d617fc, #ec95fe);
 }
-
 .icon.--red {
   background: #fa2020;
   background: linear-gradient(54deg, #fa2020, #fd9d9d);
 }
-
 .icon.--not-selected {
   background: #707070;
   background: linear-gradient(54deg, #707070, #b0b0b0);
