@@ -27,6 +27,18 @@ function loadFamily() {
             consts.list.removeChild(consts.list.lastChild);
         }
 
+        families.doc(familyUID).collection('todo').onSnapshot((querySnapshot) => {
+            while (consts.list.childNodes.length > 2) {
+                consts.list.removeChild(consts.list.lastChild);
+            }
+
+            querySnapshot.forEach((doc) => {
+                console.log('new');
+                console.log(doc.data());
+                updateTodo(doc);
+            });;
+        });
+
         displayData();
     }
 }
@@ -111,7 +123,6 @@ function displayData() {
     families.doc(familyUID).get().then((doc) => {
         data = doc.data();
         consts.headTitle.innerHTML = `The ${doc.data().name} Family`;
-        getTodo();
     }).catch((error) => { // Catch any errors
         console.log("Error:", error);
     });
@@ -195,24 +206,6 @@ function addTask() {
     consts.todoInput.classList.add('hidden');
 }
 
-families.doc(familyUID).collection('todo').onSnapshot((querySnapshot) => {
-    console.log(querySnapshot);
-    querySnapshot.forEach((doc) => {
-        console.log('new', doc.data());
-        updateTodo(doc);
-    });
-});
-
-function getTodo() {
-    families.doc(familyUID).collection('todo').get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            updateTodo(doc);
-        });
-    }).catch((error) => { // Catch any errors
-        console.log("Error:", error);
-    });
-}
 
 function updateTodo(doc) {
     let member;

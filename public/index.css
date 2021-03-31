@@ -322,11 +322,13 @@
 }
 .app .widgets .todo .list {
   grid-area: todo-list;
+  height: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: stretch;
+  overflow-y: scroll;
 }
 .app .widgets .todo .list .input {
   display: grid;

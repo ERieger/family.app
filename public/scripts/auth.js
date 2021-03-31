@@ -74,6 +74,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         users.doc(auth.currentUser.uid).get().then((doc) => {
             if (doc.exists) { // User exists
                 familyUID = doc.data().family;
+
                 loadFamily();
             } else { // Add user data to db
                 console.log("No such user!");

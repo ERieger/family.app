@@ -147,11 +147,13 @@
 
             .list {
                 grid-area: todo-list;
+                height: 100%;
                 display: flex;
                 flex-direction: column;
                 flex-wrap: nowrap;
                 justify-content: flex-start;
                 align-items: stretch;
+                overflow-y: scroll;
 
                 .input {
                     display: grid;
