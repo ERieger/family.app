@@ -23,5 +23,7 @@ const consts = {
     todoDate: document.querySelector('#input-date'),
     todoTime: document.querySelector('#input-time'),
     list: document.querySelector('#list'),
-    status: document.querySelector('#status')
+    status: document.querySelector('#status'),
+    file: document.querySelector('#file-upload'),
+    fileOutput: document.querySelector('#file-output')
 }

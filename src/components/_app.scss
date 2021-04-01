@@ -50,7 +50,7 @@
 
         &__meal-planner {
             &:hover {
-                background-color: lighten($ui-meal-planner, 25%);
+                background-color: lighten($ui-files, 25%);
             }
         }
 
@@ -84,6 +84,42 @@
         display: flex;
 
         @include scrollBar;
+
+        .files {
+            margin: 0 1rem 0 1rem;
+            width: 35rem;
+            height: 50%;
+            display: grid;
+            grid-template-columns: 2fr min-content;
+            grid-template-rows: min-content 100%;
+            grid-template-areas:
+                "title alert"
+                "file-list file-list";
+            background-color: $ui-files;
+            border-radius: 0.5rem;
+
+            &__title {
+                grid-area: title;
+                padding: 0.5rem;
+                font-size: 2.5rem;
+                color: $text-light;
+            }
+
+            &__alert {
+                grid-area: alert;
+                width: 100%;
+                height: 100%;
+                background-color: darken($ui-files, 10%);
+                border-radius: 0 0.5rem 0 1rem;
+                display: flex;
+                align-items: center;
+            }
+
+            &__add-button {
+                padding: .5rem;
+                margin: .5rem;
+            }
+        }
 
         .todo {
             margin: 0 1rem 0 1rem;
@@ -257,7 +293,7 @@
                         }
 
                         &.complete {
-                            background-color: $ui-success
+                            background-color: $ui-success;
                         }
                     }
 

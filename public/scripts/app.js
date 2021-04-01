@@ -1,9 +1,11 @@
 // Firebase references
 const auth = firebase.auth();
 const db = firebase.firestore();
+const storage = firebase.storage();
 
 const users = db.collection('users');
 const families = db.collection('families');
+const storageRef = storage.ref();
 
 let username;
 let taskMembers = [];
@@ -204,6 +206,7 @@ function addTask() {
         members: taskMembers
     }).then(() => { // If success
         console.log("Document successfully written!");
+        taskMembers = [];
     })
         .catch((error) => { // Catch errors
             console.error("Error writing document: ", error);
@@ -267,12 +270,9 @@ function updateTodo(doc) {
 }
 
 function updateIcon() {
-    console.log(itemCount);
-    if (itemCount > 0) {
-        console.log(consts.status);
+    if (itemCount >= 1) {
         consts.status.setAttribute('class', 'todo__status --meh');
     } else if (itemCount < 1) {
-        console.log(consts.status);
         consts.status.setAttribute('class', 'todo__status --ok');
     }
 }
@@ -286,4 +286,20 @@ function completeTask(elem, id) {
     }).catch((error) => {
         console.error("Error removing document: ", error);
     });
+}
+
+function upload() {
+    let file = consts.file.files[0];
+    let filePathRef = storageRef.ref(`${familyUID}/${file.name}`);
+
+    filePathRef.put(file).then((snapshot) => {
+        console.log('Uploaded a blob or file!', snapshot);
+    });
+
+    families.doc(familyUID).collection('files').doc().set({
+        name: file.name,
+        filePath: filePathRef
+    }).catch((error) => {
+        console.error('Error writing document', error);
+    })
 }
