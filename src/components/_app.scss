@@ -83,8 +83,10 @@
         overflow-y: hidden;
         display: flex;
 
+        @include scrollBar;
+
         .todo {
-            margin: 0 1rem 1rem 1rem;
+            margin: 0 1rem 0 1rem;
             width: 35rem;
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -154,6 +156,8 @@
                 justify-content: flex-start;
                 align-items: stretch;
                 overflow-y: scroll;
+
+                @include scrollBar;
 
                 .input {
                     display: grid;
@@ -243,11 +247,18 @@
 
                     &__check {
                         grid-area: check;
-                        background-color: $ui-error;
                         height: 2.5rem;
                         width: 2.5rem;
                         border: solid 0.2rem $background-secondary;
                         border-radius: 4rem;
+
+                        &.incomplete {
+                            background-color: $ui-error;
+                        }
+
+                        &.complete {
+                            background-color: $ui-success
+                        }
                     }
 
                     &__icons {

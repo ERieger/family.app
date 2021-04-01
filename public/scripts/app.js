@@ -7,6 +7,7 @@ const families = db.collection('families');
 
 let username;
 let taskMembers = [];
+let itemCount = 0;
 
 consts.todoAddBtn.addEventListener('click', createTodoItem);
 
@@ -32,11 +33,16 @@ function loadFamily() {
                 consts.list.removeChild(consts.list.lastChild);
             }
 
+            itemCount = 0;
+
+            updateIcon();
+
             querySnapshot.forEach((doc) => {
-                console.log('new');
-                console.log(doc.data());
+                itemCount++;
+                consts.todoCount.innerHTML = itemCount;
+
                 updateTodo(doc);
-            });;
+            });
         });
 
         displayData();
@@ -221,11 +227,15 @@ function updateTodo(doc) {
     elements.parent.classList.add('item');
     elements.taskTitle.classList.add('item__task');
     elements.taskDue.classList.add('item__due');
-    elements.check.classList.add('item__check');
+    elements.check.classList.add('item__check', 'incomplete');
     elements.icons.classList.add('item__icons');
 
     elements.taskTitle.innerHTML = doc.data().name;
     elements.taskDue.innerHTML = `Due: ${doc.data().date} at ${doc.data().time}`;
+
+    elements.check.addEventListener('click', () => {
+        completeTask(elements.check, doc.id);
+    });
 
     elements.parent.appendChild(elements.taskTitle);
     elements.parent.appendChild(elements.taskDue);
@@ -254,4 +264,26 @@ function updateTodo(doc) {
     }
 
     consts.list.appendChild(elements.parent);
+}
+
+function updateIcon() {
+    console.log(itemCount);
+    if (itemCount > 0) {
+        console.log(consts.status);
+        consts.status.setAttribute('class', 'todo__status --meh');
+    } else if (itemCount < 1) {
+        console.log(consts.status);
+        consts.status.setAttribute('class', 'todo__status --ok');
+    }
+}
+
+function completeTask(elem, id) {
+    itemCount--;
+    elem.classList.remove('incomplete');
+    elem.classList.add('complete');
+    families.doc(familyUID).collection('todo').doc(id).delete().then(() => {
+        console.log("Document successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
 }

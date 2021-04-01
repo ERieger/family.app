@@ -268,8 +268,23 @@
   overflow-y: hidden;
   display: flex;
 }
+.app .widgets::-webkit-scrollbar {
+  width: 20px;
+}
+.app .widgets::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.app .widgets::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+.app .widgets::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
 .app .widgets .todo {
-  margin: 0 1rem 1rem 1rem;
+  margin: 0 1rem 0 1rem;
   width: 35rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -329,6 +344,21 @@
   justify-content: flex-start;
   align-items: stretch;
   overflow-y: scroll;
+}
+.app .widgets .todo .list::-webkit-scrollbar {
+  width: 20px;
+}
+.app .widgets .todo .list::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.app .widgets .todo .list::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+.app .widgets .todo .list::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
 }
 .app .widgets .todo .list .input {
   display: grid;
@@ -421,11 +451,16 @@
 }
 .app .widgets .todo .list .item__check {
   grid-area: check;
-  background-color: #da4d4d;
   height: 2.5rem;
   width: 2.5rem;
   border: solid 0.2rem #ffffff;
   border-radius: 4rem;
+}
+.app .widgets .todo .list .item__check.incomplete {
+  background-color: #da4d4d;
+}
+.app .widgets .todo .list .item__check.complete {
+  background-color: #77b95b;
 }
 .app .widgets .todo .list .item__icons {
   width: 100%;
