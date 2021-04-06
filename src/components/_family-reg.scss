@@ -90,6 +90,45 @@
     p {
         font-size: 1.6rem;
     }
+
+    .join {
+        height: 100%;
+        width: 100%;
+
+        .--text-input {
+            @include text-input;
+            margin: 3rem;
+        }
+
+        &__submit {
+            background: $gradient-accent;
+            padding: 1rem 5rem;
+            border-radius: 10rem;
+            border: 0.1rem solid $grey-primary;
+            background-color: $grey-secondary;
+            color: $text-light;
+            font-weight: bolder;
+            font-size: 2rem;
+        }
+    }
+
+    h1 {
+        font-size: 4rem;
+        padding: 1rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        padding: 1rem;
+    }
+
+    h3 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1.6rem;
+    }
 }
 
 // For Phones

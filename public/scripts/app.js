@@ -17,7 +17,8 @@ function loadFamily() {
     if (!familyUID) {
         consts.famReg.classList.remove('hidden');
         consts.famCreate.addEventListener('click', loadFamUI);
-        consts.famJoin.addEventListener('click', joinFamily);
+        consts.famJoin.addEventListener('click', joinFamilyUI);
+        username = consts.txtUsername.value;
     } else {
         consts.appPage.classList.remove('hidden');
         users.doc(auth.currentUser.uid).get().then((doc) => {
@@ -75,7 +76,6 @@ function loadFamUI() {
 
 function createFamily() {
     let familyName = consts.famNameIn.value;
-
     familyUID = createUUID();
 
     families.doc(familyUID).get().then((doc) => {
@@ -85,46 +85,69 @@ function createFamily() {
             families.doc(familyUID).set({
                 name: familyName,
                 uuid: familyUID
-            })
-                .then(() => {
+            }).then(() => {
+                console.log("Document successfully written!");
+                users.doc(auth.currentUser.uid).set({ // Write to db
+                    family: familyUID
+                }, {
+                    merge: true
+                }).then(() => { // If success
                     console.log("Document successfully written!");
-                    users.doc(auth.currentUser.uid).set({ // Write to db
-                        family: familyUID
-                    }, {
-                        merge: true
-                    })
-                        .then(() => { // If success
-                            console.log("Document successfully written!");
-                            families.doc(familyUID).collection('members').doc(auth.currentUser.uid).set({ // Write to db
-                                username: username,
-                                uid: auth.currentUser.uid,
-                                colour: 'red'
+                    families.doc(familyUID).collection('members').doc(auth.currentUser.uid).set({ // Write to db
+                        username: username,
+                        uid: auth.currentUser.uid,
+                        colour: 'red'
 
-                            })
-                                .then(() => { // If success
-                                    console.log("Document successfully written!");
-                                    consts.famReg.classList.add('hidden');
-                                    loadFamily();
-                                })
-                                .catch((error) => { // Catch errors
-                                    console.error("Error writing document: ", error);
-                                });
-                        })
+                    }).then(() => { // If success
+                        console.log("Document successfully written!");
+                        consts.famReg.classList.add('hidden');
+                        loadFamily();
+                    })
                         .catch((error) => { // Catch errors
                             console.error("Error writing document: ", error);
                         });
-                })
-                .catch((error) => {
+                }).catch((error) => { // Catch errors
                     console.error("Error writing document: ", error);
                 });
+            }).catch((error) => {
+                console.error("Error writing document: ", error);
+            });
         }
     }).catch((error) => { // Catch any errors
         console.log("Error:", error);
     });
 }
 
+
+function joinFamilyUI() {
+    consts.famSelectForm.classList.add('hidden');
+    consts.famJoinForm.classList.remove('hidden');
+
+    consts.famJoinBtn.addEventListener('click', joinFamily);
+}
+
 function joinFamily() {
-    console.log('join');
+    familyUID = consts.famUIDIn.value;
+
+    families.doc(familyUID).get().then((doc) => {
+        if (doc.exists) {
+            families.doc(familyUID).collection('members').doc(auth.currentUser.uid).set({ // Write to db
+                username: username,
+                uid: auth.currentUser.uid,
+                colour: 'yellow'
+            }).then(() => { // If success
+                console.log("Document successfully written!");
+                consts.famJoinForm.classList.add('hidden');
+                loadFamily();
+            }).catch((error) => { // Catch errors
+                console.error("Error writing document: ", error);
+            });
+        } else {
+            throw 'That family does not exist, please submit again.'
+        }
+    }).catch((error) => { // Catch any errors
+        console.log("Error:", error);
+    });
 }
 
 function displayData() {
