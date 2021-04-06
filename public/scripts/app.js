@@ -137,7 +137,7 @@ function joinFamily() {
                 colour: 'yellow'
             }).then(() => { // If success
                 console.log("Document successfully written!");
-                consts.famJoinForm.classList.add('hidden');
+                consts.famReg.classList.add('hidden');
                 loadFamily();
             }).catch((error) => { // Catch errors
                 console.error("Error writing document: ", error);
