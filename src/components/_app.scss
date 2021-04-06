@@ -119,6 +119,30 @@
                 padding: .5rem;
                 margin: .5rem;
             }
+
+            &__output {
+                width: 100%;
+                height: 100%;
+                grid-area: file-list;
+                @include vertical-flex;
+
+                .item {
+                    display: grid;
+                    margin: .5rem;
+                    width: 100%;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: min-content min-content;
+                    grid-template-areas: 
+                    'link link'
+                    '. .';
+
+                    a {
+                        text-decoration: none;
+                        color: $text-light;
+                        grid-area: link;
+                    }
+                }
+            }
         }
 
         .todo {
