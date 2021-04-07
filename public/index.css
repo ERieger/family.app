@@ -327,7 +327,7 @@
   height: 50%;
   display: grid;
   grid-template-columns: 2fr min-content;
-  grid-template-rows: min-content 100%;
+  grid-template-rows: min-content auto;
   grid-template-areas: "title alert" "file-list file-list";
   background-color: #ff6e6e;
   border-radius: 0.5rem;
@@ -358,29 +358,54 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow-y: scroll;
+}
+.app .widgets .files__output::-webkit-scrollbar {
+  width: 20px;
+}
+.app .widgets .files__output::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.app .widgets .files__output::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+.app .widgets .files__output::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
 }
 .app .widgets .files__output .item {
   display: grid;
   margin: 0.5rem;
-  width: 100%;
+  width: calc(100% - 1rem);
   grid-template-columns: 1fr 1fr;
   grid-template-rows: min-content min-content;
-  grid-template-areas: "link link" ". .";
+  grid-template-areas: "link link" "delete delete";
 }
 .app .widgets .files__output .item a {
   text-decoration: none;
   color: #ffffff;
   grid-area: link;
+  font-size: 2rem;
+  transition: 0.5s;
+}
+.app .widgets .files__output .item a:hover {
+  color: #d9d9d9;
+}
+.app .widgets .files__output .item button {
+  grid-area: delete;
+  width: 100%;
+  height: 2rem;
 }
 .app .widgets .todo {
   margin: 0 1rem 0 1rem;
   width: 35rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: min-content 100%;
+  grid-template-rows: min-content auto;
   grid-template-areas: "title alert" "todo-list todo-list";
   background-color: #7fb7dc;
   border-radius: 0.5rem;

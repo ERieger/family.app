@@ -5,7 +5,6 @@ const storage = firebase.storage();
 
 const users = db.collection('users');
 const families = db.collection('families');
-const storageRef = storage.ref();
 
 let username;
 let taskMembers = [];
@@ -34,6 +33,10 @@ function loadFamily() {
             consts.list.removeChild(consts.list.lastChild);
         }
 
+        while (consts.fileOutput.childNodes.length > 2) {
+            consts.fileOutput.removeChild(consts.fileOutput.lastChild);
+        }
+
         families.doc(familyUID).collection('todo').onSnapshot((querySnapshot) => {
             while (consts.list.childNodes.length > 2) {
                 consts.list.removeChild(consts.list.lastChild);
@@ -48,6 +51,16 @@ function loadFamily() {
                 consts.todoCount.innerHTML = itemCount;
 
                 updateTodo(doc);
+            });
+        });
+
+        families.doc(familyUID).collection('files').onSnapshot((querySnapshot) => {
+            while (consts.fileOutput.childNodes.length > 2) {
+                consts.fileOutput.removeChild(consts.fileOutput.lastChild);
+            }
+
+            querySnapshot.forEach((doc) => {
+                updateFileList(doc);
             });
         });
 
@@ -317,16 +330,86 @@ function completeTask(elem, id) {
 
 function upload() {
     let file = consts.file.files[0];
-    let filePathRef = storageRef.ref(`${familyUID}/${file.name}`);
+    let filePathRef = storage.ref(`${familyUID}/${file.name}`);
 
     filePathRef.put(file).then((snapshot) => {
         console.log('Uploaded a blob or file!', snapshot);
+        families.doc(familyUID).collection('files').doc().set({
+            name: file.name,
+            filePath: `${familyUID}/${file.name}`
+        }).catch((error) => {
+            console.error('Error writing document', error);
+        })
     });
+}
 
-    families.doc(familyUID).collection('files').doc().set({
-        name: file.name,
-        filePath: filePathRef
+function updateFileList(doc) {
+    let filePathRef = doc.data().filePath;
+
+    let elements = {
+        parent: document.createElement('div'),
+        file: document.createElement('a'),
+        delete: document.createElement('button')
+    }
+
+    elements.parent.setAttribute('class', 'item');
+
+    storage.ref(filePathRef).getDownloadURL().then((url) => {
+        elements.file.setAttribute('href', url);
     }).catch((error) => {
-        console.error('Error writing document', error);
-    })
+        // A full list of error codes is available at
+        // https://firebase.google.com/docs/storage/web/handle-errors
+        switch (error.code) {
+            case 'storage/object-not-found':
+                console.log('Looks like that file doesn\'t exist...');
+                break;
+            case 'storage/unauthorized':
+                console.log('Invalid permissions to access that file.');
+                break;
+            case 'storage/canceled':
+                console.log('User canceled the uplodad');
+                break;
+            case 'storage/quota-exceeded':
+                console.log('Storage quota exceeded. Contact server admin, or try again later.');
+                break;
+            case 'storage/unknown':
+                console.log('An unknown error occured... Please try again later.');
+                break;
+        }
+    });
+    elements.file.innerHTML = doc.data().name;
+    elements.delete.addEventListener('click', () => {
+        remove(elements.parent, doc.data().filePath, doc.id);
+    });
+    elements.delete.innerHTML = 'Delete';
+
+    elements.parent.appendChild(elements.file);
+    elements.parent.appendChild(elements.delete);
+
+    consts.fileOutput.appendChild(elements.parent);
+}
+
+// FIXME!!!
+function remove(elem, path, id) {
+    storage.ref(path).delete().then(() => {
+        console.log('Successfully deleted file!');
+        families.doc(familyUID).collection('files').doc(id).delete().then(() => {
+            console.log("Document successfully deleted!");
+            elem.remove();
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+    }).catch((error) => {
+        switch (error.code) {
+            case 'storage/object-not-found':
+                console.log('Looks like that file doesn\'t exist...');
+                break;
+            case 'storage/unauthorized':
+                console.log('Invalid permissions to access that file.');
+                break;
+            case 'storage/unknown':
+                console.log('An unknown error occured... Please try again later.', error.code);
+                break;
+        }
+    });
 }

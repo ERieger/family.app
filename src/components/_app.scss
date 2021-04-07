@@ -91,7 +91,7 @@
             height: 50%;
             display: grid;
             grid-template-columns: 2fr min-content;
-            grid-template-rows: min-content 100%;
+            grid-template-rows: min-content auto;
             grid-template-areas:
                 "title alert"
                 "file-list file-list";
@@ -116,30 +116,49 @@
             }
 
             &__add-button {
-                padding: .5rem;
-                margin: .5rem;
+                padding: 0.5rem;
+                margin: 0.5rem;
             }
 
             &__output {
                 width: 100%;
                 height: 100%;
                 grid-area: file-list;
-                @include vertical-flex;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-items: stretch;
+                overflow-y: scroll;
+
+                @include scrollBar;
 
                 .item {
                     display: grid;
-                    margin: .5rem;
-                    width: 100%;
+                    margin: 0.5rem;
+                    width: calc(100% - 1rem);
                     grid-template-columns: 1fr 1fr;
                     grid-template-rows: min-content min-content;
-                    grid-template-areas: 
-                    'link link'
-                    '. .';
+                    grid-template-areas:
+                        "link link"
+                        "delete delete";
 
                     a {
                         text-decoration: none;
                         color: $text-light;
                         grid-area: link;
+                        font-size: 2rem;
+                        transition: 0.5s;
+
+                        &:hover {
+                            color: darken($text-light, 15%);
+                        }
+                    }
+
+                    button {
+                        grid-area: delete;
+                        width: 100%;
+                        height: 2rem;
                     }
                 }
             }
@@ -150,7 +169,7 @@
             width: 35rem;
             display: grid;
             grid-template-columns: 2fr 1fr;
-            grid-template-rows: min-content 100%;
+            grid-template-rows: min-content auto;
             grid-template-areas:
                 "title alert"
                 "todo-list todo-list";
