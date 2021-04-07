@@ -4,7 +4,8 @@
   "description": "A simple family organisation application.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "firebase serve",
+    "sass": "sass --watch src/main.scss public/index.css"
   },
   "repository": {
     "type": "git",
