@@ -16,7 +16,10 @@ consts.todoAddBtn.addEventListener('click', createTodoItem);
 function loadFamily() {
     if (!familyUID) {
         consts.famReg.classList.remove('hidden');
-        consts.famCreate.addEventListener('click', loadFamUI);
+        consts.famJoinForm.classList.add('hidden');
+        consts.famCreateForm.classList.add('hidden');
+        consts.famSelectForm.classList.remove('hidden');
+        consts.famCreate.addEventListener('click', createFamUI);
         consts.famJoin.addEventListener('click', joinFamilyUI);
         username = consts.txtUsername.value;
     } else {
@@ -67,11 +70,20 @@ function createUUID() {
     return uuid;
 }
 
-function loadFamUI() {
+function createFamUI() {
+    console.log('Create');
     consts.famSelectForm.classList.add('hidden');
     consts.famCreateForm.classList.remove('hidden');
 
     consts.createFamBtn.addEventListener('click', createFamily);
+}
+
+function joinFamilyUI() {
+    console.log('Join');
+    consts.famSelectForm.classList.add('hidden');
+    consts.famJoinForm.classList.remove('hidden');
+
+    consts.famJoinBtn.addEventListener('click', joinFamily);
 }
 
 function createFamily() {
@@ -116,14 +128,6 @@ function createFamily() {
     }).catch((error) => { // Catch any errors
         console.log("Error:", error);
     });
-}
-
-
-function joinFamilyUI() {
-    consts.famSelectForm.classList.add('hidden');
-    consts.famJoinForm.classList.remove('hidden');
-
-    consts.famJoinBtn.addEventListener('click', joinFamily);
 }
 
 function joinFamily() {
