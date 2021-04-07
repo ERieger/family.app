@@ -91,7 +91,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         consts.appPage.classList.add('hidden');
         consts.loginPage.classList.remove('hidden');
         familyUID = false;
-    }
+    } 
 });
 
 // Add new user information to database
