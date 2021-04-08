@@ -102,6 +102,7 @@ function joinFamilyUI() {
 function createFamily() {
     let familyName = consts.famNameIn.value;
     familyUID = createUUID();
+    username = consts.txtUsername.value;
 
     families.doc(familyUID).get().then((doc) => {
         if (doc.exists) {
@@ -119,15 +120,15 @@ function createFamily() {
                 }).then(() => { // If success
                     console.log("Document successfully written!");
                     families.doc(familyUID).collection('members').doc(auth.currentUser.uid).set({ // Write to db
-                        username: username,
-                        uid: auth.currentUser.uid,
-                        colour: 'red'
+                            username: username,
+                            uid: auth.currentUser.uid,
+                            colour: 'red'
 
-                    }).then(() => { // If success
-                        console.log("Document successfully written!");
-                        consts.famReg.classList.add('hidden');
-                        loadFamily();
-                    })
+                        }).then(() => { // If success
+                            console.log("Document successfully written!");
+                            consts.famReg.classList.add('hidden');
+                            loadFamily();
+                        })
                         .catch((error) => { // Catch errors
                             console.error("Error writing document: ", error);
                         });
@@ -248,14 +249,14 @@ function addTask() {
     let time = consts.todoTime.value;
 
     families.doc(familyUID).collection('todo').doc().set({
-        name: name,
-        date: date,
-        time: time,
-        members: taskMembers
-    }).then(() => { // If success
-        console.log("Document successfully written!");
-        taskMembers = [];
-    })
+            name: name,
+            date: date,
+            time: time,
+            members: taskMembers
+        }).then(() => { // If success
+            console.log("Document successfully written!");
+            taskMembers = [];
+        })
         .catch((error) => { // Catch errors
             console.error("Error writing document: ", error);
         });
