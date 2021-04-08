@@ -155,6 +155,14 @@ function joinFamily() {
             }).then(() => { // If success
                 console.log("Document successfully written!");
                 consts.famReg.classList.add('hidden');
+                users.doc(auth.currentUser.uid).set({
+                    family: familyUID
+                }, {
+                    merge: true
+                }).catch((error) => { // Catch errors
+                    console.error("Error writing document: ", error);
+                });
+
                 loadFamily();
             }).catch((error) => { // Catch errors
                 console.error("Error writing document: ", error);
